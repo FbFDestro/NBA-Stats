@@ -5,7 +5,7 @@
  * @param {(string|null)} where
  * @param {(string|null)} extraConditions
  */
-const queryString = (attributes, target, where, extraConditions) => {
+const queryString = (attributes, target, where = null, extraConditions = null) => {
   attributes = attributes.join(', ');
   const whereString = where !== null ? ' where ' + where : ' ';
   const extraConditionsString = extraConditions !== null ? extraConditions : '';
