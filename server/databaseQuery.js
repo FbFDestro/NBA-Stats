@@ -12,7 +12,12 @@ const query = async (attributes, table, conditions) => {
   const queryString = buildQuery(attributes, table, conditions);
   console.log(queryString);
   const { data } = await axios.post(databaseUrl, queryString);
-  return data;
+
+  if (typeof data === 'object' && 'error' in data) {
+    return data;
+  } else {
+    return { error: null, data };
+  }
 };
 
 module.exports = query;
