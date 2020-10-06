@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { getTeams } = require('../controllers/teams');
+const { getTeams, getPossibleOrderByKeys } = require('../controllers/teams');
 
 router.use(express.json()); // for parsing application/json
 router.use(
@@ -11,5 +11,6 @@ router.use(
 );
 
 router.get('/', getTeams);
+router.get('/possibleOrderByKeys', getPossibleOrderByKeys);
 
 module.exports = router;

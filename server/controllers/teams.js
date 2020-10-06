@@ -1,3 +1,4 @@
+const { request, response } = require('express');
 const query = require('../databaseQuery');
 
 const getTeams = async (request, response) => {
@@ -40,6 +41,23 @@ const getTeams = async (request, response) => {
   return response.status(200).json(queryResponse);
 };
 
+const getPossibleOrderByKeys = async (request, response) => {
+  return response.status(200).json({
+    errors: null,
+    data: [
+      'name',
+      'wins',
+      'losses',
+      'winning_percentage',
+      'points_per_game',
+      'opponent_stat_points',
+      'opponent_points_per_game',
+      'points_per_game_difference',
+    ],
+  });
+};
+
 module.exports = {
   getTeams,
+  getPossibleOrderByKeys,
 };
