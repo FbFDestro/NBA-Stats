@@ -1,11 +1,16 @@
 const axios = require('axios');
+const buildQuery = require('./buildQuery');
 const databaseUrl = process.env.BD_API;
 
 /**
  * @returns Database response after performing the query
- * @param {string} queryString - Query string
+ * @param {Array} attributes
+ * @param {string} from
+ * @param {string} conditions
  */
-const query = async (queryString) => {
+const query = async (attributes, table, conditions) => {
+  const queryString = buildQuery(attributes, table, conditions);
+  console.log(queryString);
   const { data } = await axios.post(databaseUrl, queryString);
   return data;
 };
