@@ -1,10 +1,7 @@
 const query = require('../databaseQuery');
 
 const getTeams = async (request, response) => {
-  /*
-  if (request.query.search) { }
-  if(request.query.order_by){}
-  */
+  const { search, order_by } = request.query;
 
   const attributes = [
     't.team_id',
@@ -20,7 +17,23 @@ const getTeams = async (request, response) => {
     '(cast(ts.points as float) / cast(ts.games as float)) - (cast(ts.opponent_stat_points as float) / cast(ts.games as float)) as points_per_game_difference',
   ];
   const target = `teams t inner join team_stats ts on t.team_id = ts.team_id`;
-  const queryResponse = await query(attributes, target, null, null);
+
+  let whereString = null,
+    extraConditionsString = null;
+  if (search) {
+    whereString = "ts.name ilike '%" + search + "%' ";
+  }
+
+  if (order_by) {
+    extraConditionsString = 'order by ' + order_by + ' ';
+  }
+
+  const queryResponse = await query(
+    attributes,
+    target,
+    whereString,
+    extraConditionsString
+  );
 
   // if (queryResponse.error === null) { }
 
