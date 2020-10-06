@@ -5,11 +5,12 @@ const databaseUrl = process.env.BD_API;
 /**
  * @returns Database response after performing the query
  * @param {Array} attributes
- * @param {string} from
- * @param {string} conditions
+ * @param {string} target
+ * @param {(string|null)} where
+ * @param {(string|null)} extraConditions
  */
-const query = async (attributes, table, conditions) => {
-  const queryString = buildQuery(attributes, table, conditions);
+const query = async (attributes, target, where, extraConditions) => {
+  const queryString = buildQuery(attributes, target, where, extraConditions);
   console.log(queryString);
   const { data } = await axios.post(databaseUrl, queryString);
 

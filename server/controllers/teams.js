@@ -11,11 +11,10 @@ const getTeams = async (request, response) => {
     'ts.points',
     'ts.opponent_stat_points',
   ];
-  const from = `teams t inner join team_stats ts on t.team_id = ts.team_id`;
-  const queryResponse = await query(attributes, from, '');
+  const target = `teams t inner join team_stats ts on t.team_id = ts.team_id`;
+  const queryResponse = await query(attributes, target, null, null);
 
   if (queryResponse.error === null) {
-    // no error from database
     const { data } = queryResponse;
     for (team of data) {
       team['winning_percentage'] = team['wins'] / team['games'];

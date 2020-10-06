@@ -1,12 +1,17 @@
 /**
- * @returns {String} select statment using attibutes, table and conditions
+ * @returns {String} select statment using attibutes, table and extraConditions
  * @param {Array} attributes
- * @param {string} from
- * @param {string} conditions
+ * @param {string} target
+ * @param {(string|null)} where
+ * @param {(string|null)} extraConditions
  */
-const queryString = (attributes, from, conditions) => {
+const queryString = (attributes, target, where, extraConditions) => {
   attributes = attributes.join(', ');
-  return 'select ' + attributes + ' from ' + from + ' ' + conditions + ';';
+  const whereString = where !== null ? ' where ' + where : ' ';
+  const extraConditionsString = extraConditions !== null ? extraConditions : '';
+  return (
+    'select ' + attributes + ' from ' + target + whereString + extraConditionsString + ';'
+  );
 };
 
 module.exports = queryString;
