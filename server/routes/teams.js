@@ -10,7 +10,16 @@ router.use(
   })
 );
 
+/**
+ * Get a list of teams
+ * @queryParams {string}: search (optional)
+ * @queryParams {string}: order_by (optional)
+ */
 router.get('/', getTeams);
+
+/**
+ * Get a list of possible order by keys for teams
+ */
 router.get('/possibleOrderByKeys', getPossibleOrderByKeys);
 
 module.exports = router;

@@ -1,6 +1,17 @@
 const { request, response } = require('express');
 const query = require('../databaseQuery');
 
+const orderByKeys = [
+  'name',
+  'wins',
+  'losses',
+  'winning_percentage',
+  'points_per_game',
+  'opponent_stats_points',
+  'opponent_points_per_game',
+  'points_per_game_difference',
+];
+
 const getTeams = async (request, response) => {
   const { search, order_by } = request.query;
 
@@ -25,7 +36,7 @@ const getTeams = async (request, response) => {
     whereString = "ts.name ilike '%" + search + "%' ";
   }
 
-  if (order_by) {
+  if (order_by && orderByKeys.includes(order_by)) {
     extraConditionsString = 'order by ' + order_by + ' ';
   }
 
@@ -36,24 +47,13 @@ const getTeams = async (request, response) => {
     extraConditionsString
   );
 
-  // if (queryResponse.error === null) { }
-
   return response.status(200).json(queryResponse);
 };
 
 const getPossibleOrderByKeys = async (request, response) => {
   return response.status(200).json({
     errors: null,
-    data: [
-      'name',
-      'wins',
-      'losses',
-      'winning_percentage',
-      'points_per_game',
-      'opponent_stat_points',
-      'opponent_points_per_game',
-      'points_per_game_difference',
-    ],
+    data: orderByKeys,
   });
 };
 
