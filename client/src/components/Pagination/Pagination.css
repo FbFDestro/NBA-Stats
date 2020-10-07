@@ -6,6 +6,7 @@ ul.pagination {
   display: flex;
   padding-left: 20px;
   gap: 20px;
+  justify-content: center;
   text-align: right;
 }
 

@@ -1,0 +1,51 @@
+#filterBox {
+  width: 95%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+#filterBox input[type='text'] {
+  width: 400px;
+}
+
+#filterBox input[type='text'],
+select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#filterBox input[type='submit'] {
+  font-family: NexaB;
+  background-color: #85196a;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.6s;
+}
+
+#filterBox input[type='submit']:hover {
+  opacity: 0.8;
+}
+
+#searchBox {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#orderByBox {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}

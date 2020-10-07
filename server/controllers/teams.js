@@ -2,18 +2,17 @@ const { request, response } = require('express');
 const query = require('../databaseQuery');
 
 const orderByKeys = [
-  'name',
-  'wins',
-  'losses',
-  'winning_percentage',
-  'points_per_game',
-  'opponent_stats_points',
-  'opponent_points_per_game',
-  'points_per_game_difference',
+  { description: 'Name', value: 'name' },
+  { description: 'Number of wins', value: 'wins' },
+  { description: 'Number of losses', value: 'losses' },
+  { description: 'Winning percentage', value: 'winning_percentage' },
+  { description: 'Points per game', value: 'points_per_game' },
+  { description: 'Opponent points per game', value: 'opponent_points_per_game' },
+  { description: 'Average point differential', value: 'points_per_game_difference' },
 ];
 
 const getTeams = async (request, response) => {
-  const { search, order_by } = request.query;
+  const { search, order_by, order } = request.query;
 
   const attributes = [
     't.team_id',
@@ -36,8 +35,11 @@ const getTeams = async (request, response) => {
     whereString = "ts.name ilike '%" + search + "%' ";
   }
 
-  if (order_by && orderByKeys.includes(order_by)) {
+  if (order_by && orderByKeys.find(({ value }) => value === order_by)) {
     extraConditionsString = 'order by ' + order_by + ' ';
+    if ((order && order == 'asc') || order == 'desc') {
+      extraConditionsString += order + ' ';
+    }
   }
 
   const queryResponse = await query(

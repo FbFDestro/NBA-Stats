@@ -16,7 +16,7 @@ export const Menu = (props) => {
     <nav>
       <ul>
         <li>
-          <Link to='/' className={isActive('/')}>
+          <Link to='/teams' className={isActive('/teams')}>
             Teams
           </Link>
         </li>

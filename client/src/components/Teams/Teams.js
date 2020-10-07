@@ -4,30 +4,48 @@ import TeamCard from './TeamCard/TeamCard';
 
 import './Team.css';
 import Pagination from '../Pagination/Pagination';
+import Filters from '../Filters/Filters';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [teamsPerPage, setTeamsPerPage] = useState(9);
+  const [teamsPerPage] = useState(9);
+
+  const [possibleOrderByKeys, setPossibleOrderByKeys] = useState([]);
+
+  const [search, setSearch] = useState('');
+  const [orderByVal, setOrderByVal] = useState('wins');
+  const [order, setOrder] = useState('desc');
 
   useEffect(() => {
     const fetchTeams = async () => {
       setLoading(true);
-      const response = await axios.get('/api/teams');
+      let filterString = '';
+      filterString = `?search=${search}&order_by=${orderByVal}&order=${order}`;
+      console.log(filterString);
+      const response = await axios.get('/api/teams' + filterString);
       setTeams(response.data.data);
       setLoading(false);
     };
 
     fetchTeams();
-  }, []);
+  }, [search, orderByVal, order]);
 
   const indexOfLastTeam = currentPage * teamsPerPage;
   const indexOfFirstTeam = indexOfLastTeam - teamsPerPage;
   const currentTeams = teams.slice(indexOfFirstTeam, indexOfLastTeam);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    const fetchPossibleOrderByKeys = async () => {
+      const response = await axios.get('/api/teams/possibleOrderByKeys');
+      setPossibleOrderByKeys(response.data.data);
+    };
+    fetchPossibleOrderByKeys();
+  }, []);
 
   const renderTeams = () => {
     if (loading) {
@@ -45,9 +63,15 @@ const Teams = () => {
 
   return (
     <div>
-      <div id='filtersBox'>
-        {/* Filterbox Component that recieves as props functions to act, orderByKeys*/}
-      </div>
+      <Filters
+        possibleOrderByKeys={possibleOrderByKeys}
+        search={search}
+        setSearch={setSearch}
+        orderByVal={orderByVal}
+        setOrderByVal={setOrderByVal}
+        order={order}
+        setOrder={setOrder}
+      />
       <div id='teamsBox'>{renderTeams()}</div>
       <Pagination
         itensPerPage={teamsPerPage}
