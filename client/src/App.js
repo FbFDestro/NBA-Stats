@@ -1,16 +1,15 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
-function App() {
+import Header from './components/Header/Header';
+
+const App = () => {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <Router>
+      <Route path='*' render={(routeProps) => <Header {...routeProps} />} />
+    </Router>
   );
-}
+};
 
 export default App;
