@@ -1,0 +1,38 @@
+.teamCard {
+  width: 350px;
+  border: 1px solid #85196a;
+  background: #531957;
+  border-radius: 15px;
+}
+
+.teamCardHeader {
+  background: #85196a;
+  border-radius: 15px 15px 0 0;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.teamCardHeader h2 {
+  font-size: 24px;
+}
+
+.teamCardHeader img {
+  width: 60px;
+  float: left;
+}
+
+.teamCardContent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 8px;
+}
+
+a.teamCardFolder {
+  width: 100%;
+  background: #85196a;
+  display: block;
+  border-radius: 0 0 15px 15px;
+  text-align: center;
+  padding: 8px 0px;
+}

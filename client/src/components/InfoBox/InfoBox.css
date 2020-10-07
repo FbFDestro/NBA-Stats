@@ -1,0 +1,38 @@
+.tooltip {
+  cursor: default;
+  position: relative;
+  display: inline-block;
+  width: 105px;
+  padding: 10px 0;
+}
+
+.infoBoxSmallDescription {
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+.infoBoxData {
+  font-size: 18px;
+}
+
+.tooltip .infoBoxFullDescription {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+  z-index: 1;
+}
+
+/* Show the tooltip text  */
+.tooltip:hover .infoBoxFullDescription {
+  visibility: visible;
+}
