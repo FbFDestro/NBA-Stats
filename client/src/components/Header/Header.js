@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import Menu from '../Menu/Menu';
 
-const Header = (props) => {
+const Header = () => {
   return (
     <header>
-      <a id='logo' href='#'>
+      <Link to='/' id='logo'>
         <img src='media/nbaLogo.png' alt='NBA' />
         <h1>NBA Stats</h1>
-      </a>
-      <Menu {...props} />
+      </Link>
+      <Menu />
     </header>
   );
 };

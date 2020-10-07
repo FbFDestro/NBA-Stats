@@ -2,9 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Menu.css';
 
+import { useLocation } from 'react-router-dom';
+
 export const Menu = (props) => {
+  let location = useLocation();
+
   const isActive = (linkPath) => {
-    if (linkPath === props.match.url) return 'btn active';
+    if (linkPath === location.pathname) return 'btn active';
     return 'btn';
   };
 
