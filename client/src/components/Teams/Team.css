@@ -2,5 +2,7 @@ div#teamsBox {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  align-items: start;
   justify-content: center;
+  min-height: 600px;
 }

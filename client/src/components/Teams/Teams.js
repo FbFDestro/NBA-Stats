@@ -3,13 +3,14 @@ import axios from 'axios';
 import TeamCard from './TeamCard/TeamCard';
 
 import './Team.css';
+import Pagination from '../Pagination/Pagination';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [teamsPerPage, setTeamsPerPage] = useState(10);
+  const [teamsPerPage, setTeamsPerPage] = useState(9);
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -22,13 +23,19 @@ const Teams = () => {
     fetchTeams();
   }, []);
 
+  const indexOfLastTeam = currentPage * teamsPerPage;
+  const indexOfFirstTeam = indexOfLastTeam - teamsPerPage;
+  const currentTeams = teams.slice(indexOfFirstTeam, indexOfLastTeam);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   const renderTeams = () => {
     if (loading) {
       return <h1>Loading...</h1>;
     } else {
       return (
         <>
-          {teams.map((team) => {
+          {currentTeams.map((team) => {
             return <TeamCard key={team.team_id} {...team} />;
           })}
         </>
@@ -42,6 +49,12 @@ const Teams = () => {
         {/* Filterbox Component that recieves as props functions to act, orderByKeys*/}
       </div>
       <div id='teamsBox'>{renderTeams()}</div>
+      <Pagination
+        itensPerPage={teamsPerPage}
+        totalItens={teams.length}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
     </div>
   );
 };

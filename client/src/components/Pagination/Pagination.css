@@ -1,0 +1,30 @@
+ul.pagination {
+  list-style-type: none;
+  margin-top: 30px;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  padding-left: 20px;
+  gap: 20px;
+  text-align: right;
+}
+
+ul.pagination li {
+  background-color: #eb4938;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  font-family: nexaB;
+  border-radius: 10px;
+}
+
+ul.pagination li:hover {
+  opacity: 0.8;
+  transition: 0.6s;
+}
+
+li.page-item.page-item-active {
+  filter: brightness(0.7);
+}

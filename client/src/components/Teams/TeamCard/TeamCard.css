@@ -8,15 +8,17 @@
 .teamCardHeader {
   background: #85196a;
   border-radius: 15px 15px 0 0;
-  padding: 10px 5px;
+  padding: 10px;
   text-align: center;
   display: flex;
+  height: 60px;
   align-items: center;
   justify-content: space-around;
 }
 
 .teamCardHeader h2 {
   font-size: 24px;
+  margin: 10px;
 }
 
 .teamCardHeader img {
