@@ -14,7 +14,12 @@ const App = () => {
       </Route>
 
       <Switch>
-        <Route exact path='/teams' render={() => <Teams />} />
+        <Route exact path='/'>
+          <Redirect to='/teams'></Redirect>
+        </Route>
+        <Route path='/teams'>
+          <Teams />
+        </Route>
       </Switch>
     </Router>
   );

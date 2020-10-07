@@ -4,21 +4,7 @@ import InfoBox from './../../InfoBox/InfoBox';
 
 import './TeamCard.css';
 
-const TeamCard = () => {
-  const props = {
-    team_id: 3,
-    name: 'Atlanta Hawks',
-    logo_url: 'https://upload.wikimedia.org/wikipedia/en/2/24/Atlanta_Hawks_logo.svg',
-    wins: 29,
-    losses: 53,
-    winning_percentage: 0.353658536585366,
-    points: '13476.3',
-    points_per_game: 164.34512195122,
-    opponent_stat_points: '14192.6',
-    opponent_points_per_game: 173.080487804878,
-    points_per_game_difference: -8.73536585365855,
-  };
-
+const TeamCard = (props) => {
   return (
     <div className='teamCard'>
       <div className='teamCardHeader'>

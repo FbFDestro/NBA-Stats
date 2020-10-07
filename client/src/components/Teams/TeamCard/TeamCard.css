@@ -1,5 +1,5 @@
 .teamCard {
-  width: 350px;
+  width: 360px;
   border: 1px solid #85196a;
   background: #531957;
   border-radius: 15px;
@@ -8,8 +8,11 @@
 .teamCardHeader {
   background: #85196a;
   border-radius: 15px 15px 0 0;
-  padding: 10px 15px;
+  padding: 10px 5px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .teamCardHeader h2 {
@@ -17,8 +20,8 @@
 }
 
 .teamCardHeader img {
-  width: 60px;
-  float: left;
+  max-width: 60px;
+  max-height: 60px;
 }
 
 .teamCardContent {
