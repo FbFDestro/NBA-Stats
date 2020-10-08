@@ -27,7 +27,7 @@ const Filters = ({
         <input
           type='text'
           className='searchInput'
-          placeholder='Search'
+          placeholder='Search by name'
           value={localSearchStr}
           onChange={(e) => setLocalSearchStr(e.target.value)}
         />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './InfoBox.css';
 
 const InfoBox = (props) => {
@@ -11,8 +12,8 @@ const InfoBox = (props) => {
   } else if (color === undefined) {
     color = '';
   }
-  console.log(props.image);
-  return (
+
+  const box = (
     <div className={`btn tooltip ${color}`}>
       <span className='infoBoxSmallDescription'>
         {props.image ? (
@@ -25,6 +26,8 @@ const InfoBox = (props) => {
       <span className='infoBoxFullDescription'>{props.description}</span>
     </div>
   );
+
+  return props.link ? <Link to={props.link}>{box}</Link> : box;
 };
 
 export default InfoBox;

@@ -1,16 +1,4 @@
-/*
 .tooltip {
-  cursor: default;
-  position: relative;
-  display: inline-block;
-  width: 105px;
-  padding: 10px 0;
-  background-color: #170033;
-}
-*/
-
-.tooltip {
-  cursor: default;
   position: relative;
   width: 105px;
   padding: 10px 0;

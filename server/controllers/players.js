@@ -4,7 +4,6 @@ const query = require('../databaseQuery');
 const orderByKeys = [
   { description: 'Name', value: 'name' },
   { description: 'Position', value: 'position' },
-  { description: 'Number of losses', value: 'losses' },
   { description: 'Team', value: 'team_name' },
   { description: 'Points', value: 'points' },
   { description: 'Efficiency rating', value: 'efficiency' },
@@ -30,7 +29,7 @@ const getPlayers = async (request, response) => {
     'ps.player_efficiency_rating as efficiency',
     'ps.assists',
     'ps.rebounds',
-    'ps.field_goals_made as field_goals',
+    'ps.field_goals_made as field_points',
     'ps.three_pointers_made as three_points',
   ];
   const target = `players p inner join player_stats ps on p.player_id = ps.player_id inner join teams t on p.team_id = t.team_id`;

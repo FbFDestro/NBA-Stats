@@ -5,7 +5,7 @@ import InfoBox from '../InfoBox/InfoBox';
 import './ItemCard.css';
 
 const ItemCard = ({ link, logo, name, infoboxItems, data }) => {
-  const renderInfoBox = infoboxItems.map((infobox) => {
+  const infoBoxes = infoboxItems.map((infobox) => {
     return (
       <InfoBox
         key={infobox.smallDescription}
@@ -13,6 +13,7 @@ const ItemCard = ({ link, logo, name, infoboxItems, data }) => {
         description={infobox.description}
         data={data[infobox.dataKey]}
         image={infobox.imageKey ? data[infobox.imageKey] : null}
+        link={infobox.linkKey ? infobox.linkPrefix + data[infobox.linkKey] : null}
         color={infobox.color}
         fixed={infobox.fixed}
       />
@@ -25,7 +26,7 @@ const ItemCard = ({ link, logo, name, infoboxItems, data }) => {
         <img src={logo} alt={name + ' logo'} />
         <h2>{name}</h2>
       </Link>
-      <div className='itemCardContent'>{renderInfoBox}</div>
+      <div className='itemCardContent'>{infoBoxes}</div>
       <Link className='itemCardFooter' to={link}>
         See more information
       </Link>
