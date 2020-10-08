@@ -7,11 +7,38 @@ import Header from './components/Header/Header';
 import Teams from './components/Teams/Teams';
 import Players from './components/Players/Players';
 
+import useLocalStorage from './hooks/useLocalStorage';
+
 const App = () => {
+  const [theme, setTheme] = useLocalStorage('theme', 0);
+  let root = document.documentElement;
+  if (theme === 0) {
+    // dark
+    root.style.setProperty('--main-bg-color', '#170033');
+    root.style.setProperty('--second-bg-color', '#210048');
+    root.style.setProperty('--third-bg-color', '#85196a');
+    root.style.setProperty('--forth-bg-color', '#531957');
+    root.style.setProperty('--main-btn-color', '#eb4939');
+    root.style.setProperty('--main-btn-text-color', '#fff');
+    root.style.setProperty('--main-text-color', '#fff');
+    root.style.setProperty('--main-green', '#6ce365');
+    root.style.setProperty('--main-red', '#e95b5b');
+  } else if (theme === 1) {
+    root.style.setProperty('--main-bg-color', '#cff6ff');
+    root.style.setProperty('--second-bg-color', '#f2fdff');
+    root.style.setProperty('--third-bg-color', '#25b9ff');
+    root.style.setProperty('--forth-bg-color', '#d7d7d7');
+    root.style.setProperty('--main-btn-color', '#25b9ff');
+    root.style.setProperty('--main-btn-text-color', '#000');
+    root.style.setProperty('--main-text-color', '#000');
+    root.style.setProperty('--main-green', '#0ba102');
+    root.style.setProperty('--main-red', '#df2020;');
+  }
+
   return (
     <Router>
       <Route path='*'>
-        <Header />
+        <Header theme={theme} setTheme={setTheme} />
       </Route>
 
       <Switch>

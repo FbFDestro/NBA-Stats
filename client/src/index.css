@@ -8,6 +8,22 @@
   src: url(resources/nexaB.otf);
 }
 
+:root {
+  --main-bg-color: #170033;
+  --second-bg-color: #210048;
+  --third-bg-color: #85196a;
+  --forth-bg-color: #531957;
+  --main-btn-color: #eb4939;
+  --main-btn-text-color: #fff;
+  --main-text-color: #fff;
+  --main-green: #6ce365;
+  --main-red: #e95b5b;
+}
+
+.hidden {
+  display: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -15,12 +31,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: NexaL, Times, serif;
   font-size: 15px;
-  background-color: #170033;
-  color: #fff;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
 }
 
 #root {
-  background: #210048;
+  background: var(--second-bg-color);
   width: 95%;
   margin: 30px auto;
   min-height: 200px;
@@ -37,7 +53,7 @@ h3 {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: var(--main-text-color);
   transition: 0.6s;
 }
 
@@ -54,8 +70,8 @@ a:hover {
 a.btn,
 .tooltip {
   display: block;
-  color: #fff;
-  background: #eb4939;
+  color: var(--main-btn-text-color);
+  background: var(--main-btn-color);
   font-family: nexaB;
   text-align: center;
   padding: 10px 16px;

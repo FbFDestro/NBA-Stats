@@ -1,11 +1,10 @@
 .itemCard {
   width: 360px;
-  background: #531957;
   border-radius: 15px;
 }
 
 .itemCardHeader {
-  background: #85196a;
+  background: var(--third-bg-color);
   border-radius: 15px 15px 0 0;
   padding: 10px;
   text-align: center;
@@ -28,13 +27,14 @@
 .itemCardContent {
   display: flex;
   justify-content: space-between;
+  background: var(--forth-bg-color);
   flex-wrap: wrap;
   padding: 8px;
 }
 
 a.itemCardFooter {
   width: 100%;
-  background: #85196a;
+  background: var(--third-bg-color);
   display: block;
   border-radius: 0 0 15px 15px;
   text-align: center;

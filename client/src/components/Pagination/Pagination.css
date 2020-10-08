@@ -12,7 +12,7 @@ ul.pagination {
 }
 
 ul.pagination li {
-  background-color: #eb4938;
+  background-color: var(--main-btn-color);
   width: 35px;
   height: 35px;
   text-align: center;

@@ -12,7 +12,7 @@ a#logo {
   font-family: NexaB;
   display: flex;
   align-items: center;
-  color: #fff;
+  color: var(--main-text-color);
 }
 
 a#logo:hover {

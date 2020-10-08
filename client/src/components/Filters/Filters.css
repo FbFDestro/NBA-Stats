@@ -23,8 +23,8 @@ select {
 
 #filterBox input[type='submit'] {
   font-family: NexaB;
-  background-color: #eb4939;
-  color: white;
+  background-color: var(--main-btn-color);
+  color: var(--main-btn-text-color);
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
