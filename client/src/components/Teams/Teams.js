@@ -16,7 +16,7 @@ const Teams = () => {
   const [possibleOrderByKeys, setPossibleOrderByKeys] = useState([]);
 
   const [search, setSearch] = useState('');
-  const [orderByVal, setOrderByVal] = useState('wins');
+  const [orderByVal, setOrderByVal] = useState('');
   const [order, setOrder] = useState('desc');
 
   useEffect(() => {

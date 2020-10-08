@@ -4,6 +4,14 @@
   display: inline-block;
   width: 105px;
   padding: 10px 0;
+  background-color: #170033;
+}
+
+.tooltip.green {
+  color: #6ce365;
+}
+.tooltip.red {
+  color: #e95b5b;
 }
 
 .infoBoxSmallDescription {

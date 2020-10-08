@@ -18,7 +18,6 @@ const Filters = ({
   };
 
   const handleRadioBtnChange = (e) => {
-    console.log(e);
     setOrder(e.target.value);
   };
 
@@ -48,18 +47,7 @@ const Filters = ({
         </select>
 
         <div id='radioBtnsBox'>
-          <div className='radioBtnOption'>
-            <input
-              type='radio'
-              id='ascending'
-              name='order'
-              value='asc'
-              checked={order === 'asc'}
-              onChange={(e) => handleRadioBtnChange(e)}
-            />
-            <span>Ascending</span>
-          </div>
-
+          {' '}
           <div className='radioBtnOption'>
             <input
               type='radio'
@@ -70,6 +58,17 @@ const Filters = ({
               onChange={(e) => handleRadioBtnChange(e)}
             />
             <span>Descending</span>
+          </div>
+          <div className='radioBtnOption'>
+            <input
+              type='radio'
+              id='ascending'
+              name='order'
+              value='asc'
+              checked={order === 'asc'}
+              onChange={(e) => handleRadioBtnChange(e)}
+            />
+            <span>Ascending</span>
           </div>
         </div>
       </div>

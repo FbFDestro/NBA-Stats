@@ -12,11 +12,17 @@ const TeamCard = (props) => {
         <h2>{props.name}</h2>
       </div>
       <div className='teamCardContent'>
-        <InfoBox smallDescription='Wins' description='Number of wins' data={props.wins} />
+        <InfoBox
+          smallDescription='Wins'
+          description='Number of wins'
+          data={props.wins}
+          color='green'
+        />
         <InfoBox
           smallDescription='Losses'
           description='Number of losses'
-          data={props.wins}
+          data={props.losses}
+          color='red'
         />
         <InfoBox
           smallDescription='PCT'
@@ -37,6 +43,7 @@ const TeamCard = (props) => {
           smallDescription='DIFF'
           description='Average point differential'
           data={props.points_per_game_difference.toFixed(1)}
+          color={props.points_per_game_difference > 0 ? 'green' : 'red'}
         />
         {/**List of teams information */}
       </div>

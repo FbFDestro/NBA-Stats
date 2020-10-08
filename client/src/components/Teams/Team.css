@@ -4,5 +4,5 @@ div#teamsBox {
   gap: 30px;
   align-items: flex-start;
   justify-content: center;
-  min-height: 600px;
+  min-height: 500px;
 }
