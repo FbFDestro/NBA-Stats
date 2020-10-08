@@ -7,10 +7,10 @@ import './TeamCard.css';
 const TeamCard = (props) => {
   return (
     <div className='teamCard'>
-      <div className='teamCardHeader'>
+      <Link to={`/team/${props.team_id}`} className='teamCardHeader'>
         <img src={props.logo_url} alt={props.name + ' logo'} />
         <h2>{props.name}</h2>
-      </div>
+      </Link>
       <div className='teamCardContent'>
         <InfoBox
           smallDescription='Wins'
@@ -45,9 +45,8 @@ const TeamCard = (props) => {
           data={props.points_per_game_difference.toFixed(1)}
           color={props.points_per_game_difference > 0 ? 'green' : 'red'}
         />
-        {/**List of teams information */}
       </div>
-      <Link className='teamCardFolder' to={`/team/${props.team_id}`}>
+      <Link className='teamCardFooter' to={`/team/${props.team_id}`}>
         See more information
       </Link>
     </div>

@@ -8,7 +8,7 @@ const Header = () => {
     <header>
       <Link to='/' id='logo'>
         <img src='media/nbaLogo.png' alt='NBA' />
-        <h1>NBA Stats</h1>
+        <h1>NBA 2019 Stats</h1>
       </Link>
       <Menu />
     </header>
