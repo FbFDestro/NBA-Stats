@@ -8,17 +8,20 @@
   src: url(resources/nexaB.otf);
 }
 
+/*
 :root {
   --main-bg-color: #170033;
   --second-bg-color: #210048;
   --third-bg-color: #85196a;
   --forth-bg-color: #531957;
+  --main-infobox-color: #170033;
   --main-btn-color: #eb4939;
   --main-btn-text-color: #fff;
   --main-text-color: #fff;
   --main-green: #6ce365;
   --main-red: #e95b5b;
 }
+*/
 
 .hidden {
   display: none;
