@@ -20,17 +20,21 @@ const ListPage = ({ page, item_id, itensPerPage, cardInfo }) => {
   const [order, setOrder] = useState('desc');
 
   useEffect(() => {
+    let isMounted = true;
     const fetchItems = async () => {
       setLoading(true);
       let filterString = '';
       filterString = `?search=${search}&order_by=${orderByVal}&order=${order}`;
       console.log(filterString);
       const response = await axios.get('/api/' + page + filterString);
-      setItems(response.data.data);
-      setLoading(false);
+      if (isMounted) {
+        setItems(response.data.data);
+        setLoading(false);
+      }
     };
-
     fetchItems();
+
+    return () => (isMounted = false);
   }, [search, orderByVal, order, page]);
 
   const indexOfLastTeam = currentPage * itemsPerPage;
@@ -40,11 +44,16 @@ const ListPage = ({ page, item_id, itensPerPage, cardInfo }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
+    let isMounted = true;
     const fetchPossibleOrderByKeys = async () => {
       const response = await axios.get(`/api/${page}/possibleOrderByKeys`);
-      setPossibleOrderByKeys(response.data.data);
+      if (isMounted) {
+        setPossibleOrderByKeys(response.data.data);
+      }
     };
     fetchPossibleOrderByKeys();
+
+    return () => (isMounted = false);
   }, [page]);
 
   const renderItems = () => {
