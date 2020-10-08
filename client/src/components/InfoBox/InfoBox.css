@@ -1,9 +1,22 @@
+/*
 .tooltip {
   cursor: default;
   position: relative;
   display: inline-block;
   width: 105px;
   padding: 10px 0;
+  background-color: #170033;
+}
+*/
+
+.tooltip {
+  cursor: default;
+  position: relative;
+  width: 105px;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #170033;
 }
 
@@ -17,6 +30,15 @@
 .infoBoxSmallDescription {
   font-size: 12px;
   margin-right: 6px;
+}
+
+.infoBoxSmallDescription img {
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  padding: 2px;
+  margin-right: 4px;
+  border-radius: 5px;
 }
 
 .infoBoxData {

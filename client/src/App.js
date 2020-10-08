@@ -5,6 +5,7 @@ import './App.css';
 import Header from './components/Header/Header';
 
 import Teams from './components/Teams/Teams';
+import Players from './components/Players/Players';
 
 const App = () => {
   return (
@@ -19,6 +20,9 @@ const App = () => {
         </Route>
         <Route path='/teams'>
           <Teams />
+        </Route>
+        <Route path='/players'>
+          <Players />
         </Route>
       </Switch>
     </Router>

@@ -8,10 +8,19 @@ const InfoBox = (props) => {
   }
   if (color === 'positive_green') {
     color = data > 0 ? 'green' : 'red';
+  } else if (color === undefined) {
+    color = '';
   }
+  console.log(props.image);
   return (
     <div className={`btn tooltip ${color}`}>
-      <span className='infoBoxSmallDescription'>{props.smallDescription}</span>
+      <span className='infoBoxSmallDescription'>
+        {props.image ? (
+          <img src={props.image} alt={props.description} />
+        ) : (
+          props.smallDescription
+        )}
+      </span>
       <span className='infoBoxData'>{data}</span>
       <span className='infoBoxFullDescription'>{props.description}</span>
     </div>

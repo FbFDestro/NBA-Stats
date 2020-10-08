@@ -12,6 +12,7 @@ const ItemCard = ({ link, logo, name, infoboxItems, data }) => {
         smallDescription={infobox.smallDescription}
         description={infobox.description}
         data={data[infobox.dataKey]}
+        image={infobox.imageKey ? data[infobox.imageKey] : null}
         color={infobox.color}
         fixed={infobox.fixed}
       />
