@@ -43,6 +43,7 @@ const getPlayers = async (request, response) => {
     if (search) whereString += ' and ';
     whereString += 't.team_id = ' + id + ' ';
   }
+  if (whereString === '') whereString = null;
 
   if (order_by && orderByKeys.find(({ value }) => value === order_by)) {
     extraConditionsString = 'order by ' + order_by + ' ';

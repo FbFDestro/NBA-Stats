@@ -8,6 +8,11 @@
   background-color: var(--main-infobox-color);
 }
 
+.compact .btn.tooltip {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
 .tooltip.big {
   width: 200px;
   gap: 10px;

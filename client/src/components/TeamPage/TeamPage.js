@@ -37,6 +37,7 @@ const TeamPage = () => {
           itensPerPage='20'
           specificGroupId={team_id}
           cardInfo={cardInfo}
+          compact='true'
         />
       </div>
     </>

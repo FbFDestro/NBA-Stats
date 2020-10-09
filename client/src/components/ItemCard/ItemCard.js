@@ -4,7 +4,7 @@ import InfoBox from '../InfoBox/InfoBox';
 
 import './ItemCard.css';
 
-const ItemCard = ({ link, logo, name, infoboxItems, data }) => {
+const ItemCard = ({ link, logo, name, infoboxItems, data, compact }) => {
   const infoBoxes = infoboxItems.map((infobox) => {
     return (
       <InfoBox
@@ -16,12 +16,13 @@ const ItemCard = ({ link, logo, name, infoboxItems, data }) => {
         link={infobox.linkKey ? infobox.linkPrefix + data[infobox.linkKey] : null}
         color={infobox.color}
         fixed={infobox.fixed}
+        compact={compact ? true : false}
       />
     );
   });
 
   return (
-    <div className='itemCard'>
+    <div className={`itemCard ${compact ? 'compact' : ''}`}>
       <Link to={link} className='itemCardHeader'>
         <img src={logo} alt={name + ' logo'} />
         <h2>{name}</h2>

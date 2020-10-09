@@ -4,6 +4,11 @@
   border-radius: 15px;
 }
 
+.itemCard.compact {
+  min-width: 315px !important;
+  width: 315px !important;
+}
+
 .itemCardHeader {
   background: var(--third-bg-color);
   border-radius: 15px 15px 0 0;
@@ -31,6 +36,10 @@
   background: var(--forth-bg-color);
   flex-wrap: wrap;
   padding: 8px;
+}
+
+.compact .itemCardContent {
+  padding: 0 !important;
 }
 
 a.itemCardFooter {

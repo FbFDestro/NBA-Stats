@@ -14,6 +14,7 @@ const ListPage = ({
   itensPerPage,
   cardInfo,
   listTitle,
+  compact,
 }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -81,6 +82,7 @@ const ListPage = ({
                 name={item['name']}
                 infoboxItems={cardInfo.infobox}
                 data={item}
+                compact={compact ? true : false}
               />
             );
           })}
