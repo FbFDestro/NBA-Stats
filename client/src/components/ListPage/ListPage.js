@@ -6,7 +6,7 @@ import Pagination from '../Pagination/Pagination';
 import Filters from '../Filters/Filters';
 import ItemCard from '../ItemCard/ItemCard';
 
-const ListPage = ({ page, item_id, itensPerPage, cardInfo }) => {
+const ListPage = ({ page, individualLink, item_id, itensPerPage, cardInfo }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -66,7 +66,7 @@ const ListPage = ({ page, item_id, itensPerPage, cardInfo }) => {
             return (
               <ItemCard
                 key={item[item_id]}
-                link={`${page}/${item[item_id]}`}
+                link={`${individualLink}/${item[item_id]}`}
                 logo={item[cardInfo.logo_key]}
                 name={item['name']}
                 infoboxItems={cardInfo.infobox}

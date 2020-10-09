@@ -57,7 +57,13 @@ const Players = () => {
     ],
   };
   return (
-    <ListPage page='players' item_id='player_id' itensPerPage='20' cardInfo={cardInfo} />
+    <ListPage
+      page='players'
+      individualLink='player'
+      item_id='player_id'
+      itensPerPage='20'
+      cardInfo={cardInfo}
+    />
   );
 };
 
