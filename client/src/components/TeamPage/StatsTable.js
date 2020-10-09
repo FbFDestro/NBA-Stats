@@ -44,8 +44,8 @@ const StatsTable = ({ team_id }) => {
       if (teamAttributesInfo.smallIsBetter.includes(data)) {
         teamColor ^= 1;
       }
-      let opponentColor = teamColor == 0 ? 'red' : '';
-      teamColor = teamColor == 1 ? 'green' : '';
+      let opponentColor = !teamColor ? 'red' : '';
+      teamColor = teamColor ? 'green' : '';
 
       const isSingleData = ['possessions', 'games'].includes(data);
 

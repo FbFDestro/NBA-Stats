@@ -6,7 +6,15 @@ import Pagination from '../Pagination/Pagination';
 import Filters from '../Filters/Filters';
 import ItemCard from '../ItemCard/ItemCard';
 
-const ListPage = ({ page, individualLink, item_id, itensPerPage, cardInfo }) => {
+const ListPage = ({
+  page,
+  individualLink,
+  item_id,
+  specificGroupId,
+  itensPerPage,
+  cardInfo,
+  listTitle,
+}) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +33,9 @@ const ListPage = ({ page, individualLink, item_id, itensPerPage, cardInfo }) => 
       setLoading(true);
       let filterString = '';
       filterString = `?search=${search}&order_by=${orderByVal}&order=${order}`;
-      console.log(filterString);
+      if (specificGroupId) {
+        filterString += `&id=${specificGroupId}`;
+      }
       const response = await axios.get('/api/' + page + filterString);
       if (isMounted) {
         setItems(response.data.data);
@@ -35,7 +45,7 @@ const ListPage = ({ page, individualLink, item_id, itensPerPage, cardInfo }) => 
     fetchItems();
 
     return () => (isMounted = false);
-  }, [search, orderByVal, order, page]);
+  }, [search, orderByVal, order, page, specificGroupId]);
 
   const indexOfLastTeam = currentPage * itemsPerPage;
   const indexOfFirstTeam = indexOfLastTeam - itemsPerPage;
@@ -79,8 +89,11 @@ const ListPage = ({ page, individualLink, item_id, itensPerPage, cardInfo }) => 
     }
   };
 
+  const title = listTitle ? <h1 className='listTitle'>{listTitle}</h1> : null;
+
   return (
     <div>
+      {title}
       <Filters
         possibleOrderByKeys={possibleOrderByKeys}
         search={search}

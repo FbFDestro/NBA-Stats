@@ -6,3 +6,7 @@ div#itemsBox {
   justify-content: center;
   min-height: 500px;
 }
+
+.listTitle {
+  margin-top: 50px;
+}

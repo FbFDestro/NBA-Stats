@@ -14,7 +14,7 @@ const orderByKeys = [
 ];
 
 const getPlayers = async (request, response) => {
-  const { search, order_by, order } = request.query;
+  const { search, order_by, order, id } = request.query;
 
   const attributes = [
     'p.player_id',
@@ -34,10 +34,14 @@ const getPlayers = async (request, response) => {
   ];
   const target = `players p inner join player_stats ps on p.player_id = ps.player_id inner join teams t on p.team_id = t.team_id`;
 
-  let whereString = null,
+  let whereString = '',
     extraConditionsString = null;
   if (search) {
     whereString = "p.yahoo_name ilike '%" + search + "%' ";
+  }
+  if (id) {
+    if (search) whereString += ' and ';
+    whereString += 't.team_id = ' + id + ' ';
   }
 
   if (order_by && orderByKeys.find(({ value }) => value === order_by)) {
@@ -53,6 +57,7 @@ const getPlayers = async (request, response) => {
     whereString,
     extraConditionsString
   );
+  console.log(queryResponse);
 
   return response.status(queryResponse.error == null ? 200 : 500).json(queryResponse);
 };
