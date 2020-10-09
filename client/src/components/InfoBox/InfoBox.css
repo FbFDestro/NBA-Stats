@@ -8,6 +8,11 @@
   background-color: var(--main-infobox-color);
 }
 
+.tooltip.big {
+  width: 200px;
+  gap: 10px;
+}
+
 .infoBoxSmallDescription {
   font-size: 12px;
   margin-right: 6px;

@@ -59,6 +59,24 @@ const getPossibleOrderByKeys = async (request, response) => {
   });
 };
 
+const getTeamInfo = async (request, response) => {
+  const { team_id } = request.params;
+  const attributes = [
+    't.team_id',
+    'ts.name',
+    't.wikipedia_logo_url as logo_url',
+    't.city',
+    't.conference',
+    't.division',
+  ];
+  const target = `teams t inner join team_stats ts on t.team_id = ts.team_id`;
+  const whereString = 't.team_id = ' + team_id + ' ';
+
+  const queryResponse = await query(attributes, target, whereString);
+
+  return response.status(200).json(queryResponse);
+};
+
 const descriptions = {
   team_id: 'The unique ID of the team',
   name: 'Team name',
@@ -207,6 +225,7 @@ const getTeamAttributesInfo = async (request, response) => {
 module.exports = {
   getTeams,
   getPossibleOrderByKeys,
+  getTeamInfo,
   getTeamStats,
   getTeamAttributesInfo,
 };

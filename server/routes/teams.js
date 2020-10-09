@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   getTeams,
   getPossibleOrderByKeys,
+  getTeamInfo,
   getTeamStats,
   getTeamAttributesInfo,
 } = require('../controllers/teams');
@@ -28,6 +29,7 @@ router.get('/', getTeams);
  */
 router.get('/possibleOrderByKeys', getPossibleOrderByKeys);
 
+router.get('/info/:team_id', getTeamInfo);
 router.get('/stats/:team_id', getTeamStats);
 router.get('/attributesInfo', getTeamAttributesInfo);
 

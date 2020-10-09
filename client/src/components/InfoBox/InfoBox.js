@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './InfoBox.css';
 
 const InfoBox = (props) => {
-  let { data, color } = props;
+  let { data, color, bigger } = props;
   if (props.fixed && props.fixed > 0) {
     data = props.data.toFixed(props.fixed);
   }
@@ -13,8 +13,10 @@ const InfoBox = (props) => {
     color = '';
   }
 
+  if (!bigger) bigger = '';
+
   const box = (
-    <div className={`btn tooltip ${color}`}>
+    <div className={`btn tooltip ${color} ${bigger}`}>
       <span className='infoBoxSmallDescription'>
         {props.image ? (
           <img src={props.image} alt={props.description} />
