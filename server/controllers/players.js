@@ -54,7 +54,7 @@ const getPlayers = async (request, response) => {
     extraConditionsString
   );
 
-  return response.status(200).json(queryResponse);
+  return response.status(queryResponse.error == null ? 200 : 500).json(queryResponse);
 };
 
 const getPossibleOrderByKeys = async (request, response) => {
@@ -63,6 +63,21 @@ const getPossibleOrderByKeys = async (request, response) => {
     data: orderByKeys,
   });
 };
+
+/*
+const getPointsPerTeam = async (request, response) => {
+  const { team_id } = request.query;
+
+  // select name, points from player_stats where team_id = 1;
+
+  const attributes = ['name as label', 'cast(points as float) as y'];
+  const target = 'player_stats';
+  const whereString = 'team_id = ' + team_id + ' ';
+
+  const queryResponse = await query(attributes, target, whereString);
+  return response.status(queryResponse.error == null ? 200 : 500).json(queryResponse);
+};
+*/
 
 module.exports = {
   getPlayers,
