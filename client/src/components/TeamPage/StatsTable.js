@@ -40,14 +40,12 @@ const StatsTable = ({ team_id }) => {
       const teamValue = teamData[data];
       const opponentValue = teamData['opponent_stat_' + data];
 
-      let teamColor = teamValue >= opponentValue ? 'green' : 'red';
-      let opponentColor = teamValue <= opponentValue ? 'green' : 'red';
-
+      let teamColor = teamValue >= opponentValue;
       if (teamAttributesInfo.smallIsBetter.includes(data)) {
-        [teamColor, opponentColor] = [opponentColor, teamColor];
+        teamColor ^= 1;
       }
-      if (teamColor === 'red') {
-      }
+      let opponentColor = teamColor == 0 ? 'red' : '';
+      teamColor = teamColor == 1 ? 'green' : '';
 
       const isSingleData = ['possessions', 'games'].includes(data);
 
