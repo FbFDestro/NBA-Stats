@@ -1,4 +1,5 @@
 .itemCard {
+  min-width: 360px;
   width: 360px;
   border-radius: 15px;
 }

@@ -40,24 +40,26 @@ const App = () => {
 
   return (
     <Router>
-      <Route path='*'>
-        <Header theme={theme} setTheme={setTheme} />
-      </Route>
+      <div id='content'>
+        <Route path='*'>
+          <Header theme={theme} setTheme={setTheme} />
+        </Route>
 
-      <Switch>
-        <Route exact path='/'>
-          <Redirect to='/teams'></Redirect>
-        </Route>
-        <Route path='/teams'>
-          <Teams />
-        </Route>
-        <Route path='/team/:team_id'>
-          <TeamPage />
-        </Route>
-        <Route path='/players'>
-          <Players />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route exact path='/'>
+            <Redirect to='/teams'></Redirect>
+          </Route>
+          <Route path='/teams'>
+            <Teams />
+          </Route>
+          <Route path='/team/:team_id'>
+            <TeamPage />
+          </Route>
+          <Route path='/players'>
+            <Players />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 };

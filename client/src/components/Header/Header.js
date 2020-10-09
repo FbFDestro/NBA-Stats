@@ -7,7 +7,7 @@ const Header = (props) => {
   return (
     <header>
       <Link to='/' id='logo'>
-        <img src='media/nbaLogo.png' alt='NBA' />
+        <img src='/media/nbaLogo.png' alt='NBA' />
         <h1>NBA 2019 Stats</h1>
       </Link>
       <Menu {...props} />

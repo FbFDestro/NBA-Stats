@@ -8,13 +8,6 @@
   background-color: var(--main-infobox-color);
 }
 
-.tooltip.green {
-  color: var(--main-green);
-}
-.tooltip.red {
-  color: var(--main-red);
-}
-
 .infoBoxSmallDescription {
   font-size: 12px;
   margin-right: 6px;

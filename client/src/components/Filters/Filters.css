@@ -1,6 +1,6 @@
 #filterBox {
-  width: 95%;
-  margin: 30px auto;
+  width: 98%;
+  margin: 15px auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -8,7 +8,7 @@
 }
 
 #filterBox input[type='text'] {
-  width: 400px;
+  max-width: 400px;
 }
 
 #filterBox input[type='text'],

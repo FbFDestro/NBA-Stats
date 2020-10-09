@@ -64,7 +64,7 @@ const descriptions = {
   name: 'Team name',
   wins: 'Total number of wins',
   losses: 'Total number of losses',
-  possessions: "The team's estimated number of possessionsx",
+  possessions: "The team's estimated number of possessions",
   games: 'The number of games played',
   fantasy_points: 'Total fantasy points',
   minutes: 'Total number of minutes played',
@@ -103,16 +103,16 @@ const descriptions = {
 
 const smallIsBetter = ['losses', 'personal_fouls'];
 
-const getTeamById = async (request, response) => {
+const getTeamStats = async (request, response) => {
   const { team_id } = request.params;
 
   const attributes = [
     'ts.team_id',
     'ts.name',
+    'games',
+    'possessions',
     'wins',
     'losses',
-    'possessions',
-    'games',
     'fantasy_points',
     'minutes',
     'field_goals_made',
@@ -192,6 +192,8 @@ const getTeamById = async (request, response) => {
   const whereString = 'ts.team_id = ' + team_id;
   const queryResponse = await query(attributes, target, whereString);
 
+  queryResponse.data = queryResponse.data[0];
+
   return response.status(200).json(queryResponse);
 };
 
@@ -205,6 +207,6 @@ const getTeamAttributesInfo = async (request, response) => {
 module.exports = {
   getTeams,
   getPossibleOrderByKeys,
-  getTeamById,
+  getTeamStats,
   getTeamAttributesInfo,
 };

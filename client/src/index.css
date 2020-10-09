@@ -48,6 +48,11 @@ body {
   padding-bottom: 30px;
 }
 
+#content {
+  width: 95%;
+  margin: 0 auto;
+}
+
 h1,
 h2,
 h3 {
@@ -58,6 +63,13 @@ a {
   text-decoration: none;
   color: var(--main-text-color);
   transition: 0.6s;
+}
+
+.green {
+  color: var(--main-green) !important;
+}
+.red {
+  color: var(--main-red) !important;
 }
 
 .hidden {
@@ -86,4 +98,44 @@ a.btn,
 
 a.btn.active {
   filter: brightness(0.7);
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  border-radius: 5px;
+}
+
+thead tr {
+  background-color: var(--third-bg-color) !important;
+}
+
+thead tr:hover {
+  filter: none !important;
+}
+
+td,
+th {
+  border: 1px solid var(--third-bg-color);
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: var(--forth-bg-color);
+}
+tr:nth-child(odd) {
+  background-color: var(--second-bg-color);
+}
+
+tr:hover {
+  filter: brightness(0.8);
+  transition: 0.6s;
+}
+
+.noLeftBorder {
+  border-left: none !important;
+}
+.noRightBorder {
+  border-right: none !important;
 }

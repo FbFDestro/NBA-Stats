@@ -18,7 +18,7 @@ export const Menu = (props) => {
         {/* light theme disabled for now */}
         <img
           className={`${props.theme === 0 ? 'img-dark' : ''} `}
-          src='media/light.png'
+          src='/media/light.png'
           alt='theme'
           onClick={() => {
             props.setTheme(props.theme ^ 1);
