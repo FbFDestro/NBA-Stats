@@ -18,7 +18,7 @@ const TeamPage = () => {
       <div id='teamStatsBox'>
         <StatsTable team_id={team_id} />
         <div className='chartsBox'>
-          <PlayerCharts />
+          <PlayerCharts team_id={team_id} />
         </div>
       </div>
       <ListPage

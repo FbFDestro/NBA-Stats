@@ -3,14 +3,14 @@ import axios from 'axios';
 
 import { Bar } from 'react-chartjs-2';
 
-const PlayerCharts = () => {
+const PlayerCharts = ({ team_id }) => {
   const [pointsOnTeam, setPointsOnTeam] = useState([]);
   const [efficiencyOnTeam, setEfficiencyOnTeam] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
     const fetchPossibleOrderByKeys = async () => {
-      const response = await axios.get(`/api/players/StatsPerTeam/1`);
+      const response = await axios.get(`/api/players/StatsPerTeam/${team_id}`);
       if (isMounted) {
         setPointsOnTeam(response.data.data['points']);
         setEfficiencyOnTeam(response.data.data['efficiency']);
@@ -19,7 +19,7 @@ const PlayerCharts = () => {
     fetchPossibleOrderByKeys();
 
     return () => (isMounted = false);
-  }, []);
+  }, [team_id]);
 
   const stats = {
     points: pointsOnTeam,
@@ -49,7 +49,7 @@ const PlayerCharts = () => {
       ],
     };
 
-    return { key: key, title: 'Player ' + key, data: data };
+    return { key: key, title: 'Players ' + key, data: data };
   });
 
   const charts = chartsData.map((chart) => {
