@@ -73,8 +73,6 @@ const getPossibleOrderByKeys = async (request, response) => {
 const getStatsPerTeam = async (request, response) => {
   const { team_id } = request.params;
 
-  // select name, points from player_stats where team_id = 1;
-
   const attributes = [
     'name',
     'cast(points as float)',
@@ -108,8 +106,30 @@ const getStatsPerTeam = async (request, response) => {
   });
 };
 
+const getPlayerInfo = async (request, response) => {
+  const { player_id } = request.params;
+  const attributes = [
+    'player_id',
+    'yahoo_name as name',
+    'photo_url',
+    'jersey',
+    'position',
+    'height',
+    'weight',
+    'birth_city',
+    'birth_date',
+    'salary',
+  ];
+  const target = `players`;
+  const whereString = 'player_id = ' + player_id + ' ';
+
+  const queryResponse = await query(attributes, target, whereString);
+  return response.status(200).json(queryResponse);
+};
+
 module.exports = {
   getPlayers,
   getPossibleOrderByKeys,
   getStatsPerTeam,
+  getPlayerInfo,
 };
