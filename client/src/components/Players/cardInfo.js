@@ -5,7 +5,7 @@ const cardInfo = {
       smallDescription: 'Team',
       imageKey: 'team_logo_url',
       linkKey: 'team_id',
-      linkPrefix: 'team/',
+      linkPrefix: '/team/',
       description: "Player's team",
       dataKey: 'team_name',
     },

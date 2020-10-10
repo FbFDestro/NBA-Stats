@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import InfoBox from '../InfoBox/InfoBox';
+import './InfoHeader.css';
 
 const InfoHeader = ({ data }) => {
   const { page, page_id } = data;
@@ -27,10 +28,10 @@ const InfoHeader = ({ data }) => {
     const infoBoxes = data.infoBoxes.map((box) => {
       return (
         <InfoBox
-          key={box.key}
+          dataKey={box.dataKey}
           smallDescription={box.smallDescription}
           description={box.description}
-          data={pageInfo[box.key]}
+          data={pageInfo[box.dataKey]}
           bigger='big'
         />
       );
@@ -43,7 +44,7 @@ const InfoHeader = ({ data }) => {
           <h2>{pageInfo[data['name']]}</h2>
         </div>
 
-        {infoBoxes}
+        <div className='infoHeaderBoxes'>{infoBoxes}</div>
       </div>
     );
   } else if (!isLoading) {

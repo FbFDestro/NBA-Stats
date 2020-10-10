@@ -141,26 +141,3 @@ tr:hover {
 .noRightBorder {
   border-right: none !important;
 }
-
-#titleInfoBox {
-  background: var(--third-bg-color);
-  border-radius: 15px;
-  padding: 20px;
-  margin: 40px 0;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-}
-
-#titleInfoBox img {
-  max-width: 100px;
-  max-height: 130px;
-}
-
-#titleInfoBox .logo {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}

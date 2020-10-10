@@ -77,7 +77,7 @@ const ListPage = ({
             return (
               <ItemCard
                 key={item[item_id]}
-                link={`${individualLink}/${item[item_id]}`}
+                link={`/${individualLink}/${item[item_id]}`}
                 logo={item[cardInfo.logo_key]}
                 name={item['name']}
                 infoboxItems={cardInfo.infobox}

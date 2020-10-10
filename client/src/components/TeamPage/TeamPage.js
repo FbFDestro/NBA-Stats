@@ -20,13 +20,17 @@ const TeamPage = () => {
     logo_url: 'logo_url',
     name: 'name',
     infoBoxes: [
-      { key: 'city', smallDescription: 'City', description: "Team's city" },
+      { dataKey: 'city', smallDescription: 'City', description: "Team's city" },
       {
-        key: 'conference',
+        dataKey: 'conference',
         smallDescription: 'Conference',
         description: "Team's conference",
       },
-      { key: 'division', smallDescription: 'Division', description: "Team's division" },
+      {
+        dataKey: 'division',
+        smallDescription: 'Division',
+        description: "Team's division",
+      },
     ],
   };
 

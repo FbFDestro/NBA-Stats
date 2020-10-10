@@ -1,31 +1,56 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import InfoHeader from '../InfoHeader/InfoHeader';
 
 const PlayerPage = () => {
   const { player_id } = useParams();
 
-  /*
-
   const infoHeaderData = {
-    page: 'teams',
-    page_id: team_id,
-    logo_url: 'logo_url',
+    page: 'players',
+    page_id: player_id,
+    logo_url: 'photo_url',
     name: 'name',
     infoBoxes: [
-      { key: 'city', smallDescription: 'City', description: "Team's city" },
       {
-        key: 'conference',
-        smallDescription: 'Conference',
-        description: "Team's conference",
+        dataKey: 'jersey',
+        smallDescription: 'Jersey',
+        description: "Player's jersey number",
       },
-      { key: 'division', smallDescription: 'Division', description: "Team's division" },
+      {
+        dataKey: 'position',
+        smallDescription: 'POS',
+        description: 'Position',
+      },
+      {
+        dataKey: 'height',
+        smallDescription: 'Height',
+        description: "Player's height in inches",
+      },
+      {
+        dataKey: 'weight',
+        smallDescription: 'Weight',
+        description: "Player's weight in pounds (lbs)",
+      },
+      {
+        dataKey: 'birth_city',
+        smallDescription: 'City',
+        description: 'City in with the player was born',
+      },
+      {
+        dataKey: 'birth_date',
+        smallDescription: 'Birhtdate',
+        description: "Player's date of birth",
+      },
+      {
+        dataKey: 'salary',
+        description: "Player's salary for the season",
+      },
     ],
   };
-  */
 
   return (
     <>
-      <h1>{player_id}</h1>
+      <InfoHeader data={infoHeaderData} />
     </>
   );
 };

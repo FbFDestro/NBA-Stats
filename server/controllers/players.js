@@ -124,6 +124,20 @@ const getPlayerInfo = async (request, response) => {
   const whereString = 'player_id = ' + player_id + ' ';
 
   const queryResponse = await query(attributes, target, whereString);
+
+  if (queryResponse.data[0].birth_date) {
+    let birth = queryResponse.data[0].birth_date;
+    birth = birth.slice(0, birth.indexOf('T'));
+    queryResponse.data[0].birth_date = birth;
+  }
+
+  if (queryResponse.data[0].salary) {
+    queryResponse.data[0].salary = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(queryResponse.data[0].salary);
+  }
+
   return response.status(200).json(queryResponse);
 };
 

@@ -1,0 +1,34 @@
+#titleInfoBox {
+  background: var(--third-bg-color);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 40px 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@media (max-width: 600px) {
+  #titleInfoBox {
+    flex-wrap: wrap;
+  }
+}
+
+#titleInfoBox img {
+  max-width: 100px;
+  max-height: 130px;
+}
+
+#titleInfoBox .logo {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.infoHeaderBoxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 25px;
+}
