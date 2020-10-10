@@ -1,7 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import StatsTable from './StatsTable';
-import TeamInfo from './TeamInfo';
+
+import InfoHeader from '../InfoHeader/InfoHeader';
+
 import ListPage from '../ListPage/ListPage';
 import cardInfo from '../Players/cardInfo';
 
@@ -12,9 +14,26 @@ import './TeamPage.css';
 const TeamPage = () => {
   const { team_id } = useParams();
 
+  const infoHeaderData = {
+    page: 'teams',
+    page_id: team_id,
+    logo_url: 'logo_url',
+    name: 'name',
+    infoBoxes: [
+      { key: 'city', smallDescription: 'City', description: "Team's city" },
+      {
+        key: 'conference',
+        smallDescription: 'Conference',
+        description: "Team's conference",
+      },
+      { key: 'division', smallDescription: 'Division', description: "Team's division" },
+    ],
+  };
+
   return (
     <>
-      <TeamInfo team_id={team_id} />
+      {/* <TeamInfo team_id={team_id} /> */}
+      <InfoHeader data={infoHeaderData} />
       <div id='teamStatsBox'>
         <StatsTable team_id={team_id} />
         <div className='chartsBox'>

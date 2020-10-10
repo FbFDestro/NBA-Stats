@@ -9,6 +9,7 @@ import Players from './components/Players/Players';
 
 import useLocalStorage from './hooks/useLocalStorage';
 import TeamPage from './components/TeamPage/TeamPage';
+import PlayerPage from './components/PlayerPage/PlayerPage';
 
 const App = () => {
   const [theme, setTheme] = useLocalStorage('theme', 0);
@@ -57,6 +58,9 @@ const App = () => {
           </Route>
           <Route path='/players'>
             <Players />
+          </Route>
+          <Route path='/player/:player_id'>
+            <PlayerPage />
           </Route>
         </Switch>
       </div>
