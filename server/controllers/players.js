@@ -70,22 +70,46 @@ const getPossibleOrderByKeys = async (request, response) => {
   });
 };
 
-/*
-const getPointsPerTeam = async (request, response) => {
-  const { team_id } = request.query;
+const getStatsPerTeam = async (request, response) => {
+  const { team_id } = request.params;
 
   // select name, points from player_stats where team_id = 1;
 
-  const attributes = ['name as label', 'cast(points as float) as y'];
+  const attributes = [
+    'name',
+    'cast(points as float)',
+    'cast(player_efficiency_rating as float) as efficiency',
+  ];
   const target = 'player_stats';
   const whereString = 'team_id = ' + team_id + ' ';
 
   const queryResponse = await query(attributes, target, whereString);
-  return response.status(queryResponse.error == null ? 200 : 500).json(queryResponse);
+  if (queryResponse.error) {
+    return response.stats(500).json(queryResponse);
+  }
+
+  const getSortedArray = (data, key) => {
+    return data
+      .map((player) => {
+        return { label: player['name'], value: player[key] };
+      })
+      .sort((p1, p2) => p2.value - p1.value);
+  };
+
+  const sortedPoints = getSortedArray(queryResponse.data, 'points');
+  const sortedEfficiency = getSortedArray(queryResponse.data, 'efficiency');
+
+  return response.status(200).json({
+    error: null,
+    data: {
+      points: sortedPoints,
+      efficiency: sortedEfficiency,
+    },
+  });
 };
-*/
 
 module.exports = {
   getPlayers,
   getPossibleOrderByKeys,
+  getStatsPerTeam,
 };

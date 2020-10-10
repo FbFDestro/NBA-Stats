@@ -210,7 +210,7 @@ const getTeamStats = async (request, response) => {
   const whereString = 'ts.team_id = ' + team_id;
   const queryResponse = await query(attributes, target, whereString);
 
-  queryResponse.data = queryResponse.data[0];
+  if (queryResponse.data.length > 0) queryResponse.data = queryResponse.data[0];
 
   return response.status(200).json(queryResponse);
 };

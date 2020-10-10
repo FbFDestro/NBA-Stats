@@ -25,11 +25,19 @@ const InfoBox = (props) => {
         )}
       </span>
       <span className='infoBoxData'>{data}</span>
-      <span className='infoBoxFullDescription'>{props.description}</span>
+      {!props.link ? (
+        <span className='infoBoxFullDescription'>{props.description}</span>
+      ) : null}
     </div>
   );
 
-  return props.link ? <Link to={props.link}>{box}</Link> : box;
+  return props.link ? (
+    <Link to={props.link} title={props.description}>
+      {box}
+    </Link>
+  ) : (
+    box
+  );
 };
 
 export default InfoBox;

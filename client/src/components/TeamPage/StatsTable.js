@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const tableReducedLines = 15;
+
 const StatsTable = ({ team_id }) => {
   const [teamAttributesInfo, setTeamAttributesInfo] = useState({});
+  const [showFull, setShowFull] = useState(false);
   useEffect(() => {
     let isMounted = true;
     const fetchAttributesInfo = async () => {
@@ -34,7 +37,10 @@ const StatsTable = ({ team_id }) => {
 
   const teamList = [];
   if (teamData) {
+    let countLines = 0;
     for (const data in teamData) {
+      if (!showFull && countLines++ > tableReducedLines) break;
+
       if (data.startsWith('opponent') || data === 'name' || data === 'team_id') continue;
 
       const teamValue = teamData[data];
@@ -65,16 +71,26 @@ const StatsTable = ({ team_id }) => {
     }
 
     tableResult = (
-      <table className='teamDetails'>
-        <thead>
-          <tr>
-            <th></th>
-            <th>{teamData['name']}</th>
-            <th>Opponents</th>
-          </tr>
-        </thead>
-        <tbody>{teamList}</tbody>
-      </table>
+      <>
+        <table className='teamDetails'>
+          <thead>
+            <tr>
+              <th></th>
+              <th>{teamData['name']}</th>
+              <th>Opponents</th>
+            </tr>
+          </thead>
+          <tbody>{teamList}</tbody>
+        </table>
+        <button
+          className='btnShowMore'
+          onClick={() => {
+            setShowFull(!showFull);
+          }}
+        >
+          {showFull ? 'Show less' : 'Show more'}
+        </button>
+      </>
     );
   }
 
