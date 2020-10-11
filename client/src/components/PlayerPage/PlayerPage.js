@@ -12,6 +12,14 @@ const PlayerPage = () => {
     name: 'name',
     infoBoxes: [
       {
+        dataKey: 'team_name',
+        smallDescription: 'Team',
+        imageKey: 'team_logo_url',
+        linkKey: 'team_id',
+        linkPrefix: '/team/',
+        description: "Player's team",
+      },
+      {
         dataKey: 'jersey',
         smallDescription: 'Jersey',
         description: "Player's jersey number",
@@ -38,7 +46,7 @@ const PlayerPage = () => {
       },
       {
         dataKey: 'birth_date',
-        smallDescription: 'Birhtdate',
+        smallDescription: 'Born',
         description: "Player's date of birth",
       },
       {
@@ -48,11 +56,7 @@ const PlayerPage = () => {
     ],
   };
 
-  return (
-    <>
-      <InfoHeader data={infoHeaderData} />
-    </>
-  );
+  return <InfoHeader data={infoHeaderData} />;
 };
 
 export default PlayerPage;

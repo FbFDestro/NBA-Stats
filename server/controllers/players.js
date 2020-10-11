@@ -119,8 +119,11 @@ const getPlayerInfo = async (request, response) => {
     'birth_city',
     'birth_date',
     'salary',
+    't.team_id',
+    't.key as team_name',
+    't.wikipedia_logo_url as team_logo_url',
   ];
-  const target = `players`;
+  const target = `players p inner join teams t on p.team_id = t.team_id`;
   const whereString = 'player_id = ' + player_id + ' ';
 
   const queryResponse = await query(attributes, target, whereString);

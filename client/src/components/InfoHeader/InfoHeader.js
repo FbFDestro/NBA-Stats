@@ -28,10 +28,12 @@ const InfoHeader = ({ data }) => {
     const infoBoxes = data.infoBoxes.map((box) => {
       return (
         <InfoBox
-          dataKey={box.dataKey}
+          key={box.dataKey}
           smallDescription={box.smallDescription}
           description={box.description}
           data={pageInfo[box.dataKey]}
+          image={box.imageKey ? pageInfo[box.imageKey] : null}
+          link={box.linkKey ? box.linkPrefix + pageInfo[box.linkKey] : null}
           bigger='big'
         />
       );
