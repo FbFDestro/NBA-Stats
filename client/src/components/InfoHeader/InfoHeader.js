@@ -46,7 +46,9 @@ const InfoHeader = ({ data }) => {
           <h2>{pageInfo[data['name']]}</h2>
         </div>
 
-        <div className='infoHeaderBoxes'>{infoBoxes}</div>
+        <div className='infoHeaderBoxes'>
+          {infoBoxes} <button>Compare</button>
+        </div>
       </div>
     );
   } else if (!isLoading) {
