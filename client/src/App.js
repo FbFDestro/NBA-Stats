@@ -10,6 +10,7 @@ import Players from './components/Players/Players';
 import useLocalStorage from './hooks/useLocalStorage';
 import TeamPage from './components/TeamPage/TeamPage';
 import PlayerPage from './components/PlayerPage/PlayerPage';
+import ComparePlayers from './components/ComparePlayers/ComparePlayers';
 
 const App = () => {
   const [theme, setTheme] = useLocalStorage('theme', 0);
@@ -63,6 +64,9 @@ const App = () => {
             <PlayerPage />
           </Route>
         </Switch>
+
+        {/* For test */}
+        <ComparePlayers player1_id='20000572' player2_id='20000443' />
       </div>
     </Router>
   );

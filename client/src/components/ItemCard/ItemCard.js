@@ -6,9 +6,10 @@ import './ItemCard.css';
 
 const ItemCard = ({ link, logo, name, infoboxItems, data, compact }) => {
   const infoBoxes = infoboxItems.map((infobox) => {
+    console.log(infobox.smallDescription);
     return (
       <InfoBox
-        key={infobox.smallDescription}
+        key={infobox.dataKey}
         smallDescription={infobox.smallDescription}
         description={infobox.description}
         data={data[infobox.dataKey]}
@@ -22,7 +23,7 @@ const ItemCard = ({ link, logo, name, infoboxItems, data, compact }) => {
   });
 
   return (
-    <div className={`itemCard ${compact ? 'compact' : ''}`}>
+    <div key={name} className={`itemCard ${compact ? 'compact' : ''}`}>
       <Link to={link} className='itemCardHeader'>
         <img src={logo} alt={name + ' logo'} />
         <h2>{name}</h2>

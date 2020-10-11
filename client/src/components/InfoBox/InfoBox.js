@@ -16,7 +16,7 @@ const InfoBox = (props) => {
   if (!bigger) bigger = '';
 
   const box = (
-    <div className={`btn tooltip ${color} ${bigger}`}>
+    <div key={props.smallDescription} className={`btn tooltip ${color} ${bigger}`}>
       <span className='infoBoxSmallDescription'>
         {props.image ? (
           <img src={props.image} alt={props.description} />

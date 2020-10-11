@@ -54,7 +54,7 @@ const PlayerStatsTable = ({ player_id }) => {
     }
 
     tableResult = (
-      <div class='playerDetailsBox'>
+      <div className='playerDetailsBox'>
         <table className='playerDetails'>
           <thead>
             <tr>
