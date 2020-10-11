@@ -162,6 +162,25 @@ const getPlayerAttributesInfo = async (request, response) => {
   });
 };
 
+const comparePlayers = async (request, response) => {
+  const { player1_id, player2_id } = request.params;
+
+  //  generate attributes using personal info of a player + player stats values
+  const attributes = queryAttributes.playerPersonalInfo.concat(
+    Object.keys(queryAttributes.statsDescriptions)
+    .map((key) => `ps.${key}`)
+  );
+
+  const target =
+    'players p inner join teams t on p.team_id = t.team_id inner join player_stats ps on p.player_id = ps.player_id';
+
+  const whereString = `p.player_id = ${player1_id} or p.player_id = ${player2_id}`;
+
+  const queryResponse = await query(attributes, target, whereString);
+
+  return response.status(200).json(queryResponse);
+};
+
 module.exports = {
   getPlayers,
   getPossibleOrderByKeys,

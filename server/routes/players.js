@@ -8,6 +8,7 @@ const {
   getPlayerInfo,
   getPlayerStats,
   getPlayerAttributesInfo,
+  comparePlayers,
 } = require('../controllers/Players/players');
 
 router.use(express.json()); // for parsing application/json
@@ -33,5 +34,7 @@ router.get('/info/:player_id', getPlayerInfo);
 
 router.get('/stats/:player_id', getPlayerStats);
 router.get('/attributesInfo', getPlayerAttributesInfo);
+
+router.get('/compare/:player1_id/:player2_id', comparePlayers);
 
 module.exports = router;
