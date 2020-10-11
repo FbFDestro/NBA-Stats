@@ -1,5 +1,15 @@
+.compare {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.compare button {
+  width: 150px;
+}
+
 .compareBox {
   display: flex;
   flex-wrap: wrap;
+  gap: 40px;
   justify-content: space-around;
 }

@@ -37,7 +37,7 @@ const App = () => {
     root.style.setProperty('--main-btn-text-color', '#000');
     root.style.setProperty('--main-text-color', '#000');
     root.style.setProperty('--main-green', '#0ba102');
-    root.style.setProperty('--main-red', '#df2020;');
+    root.style.setProperty('--main-red', '#df2020');
   }
 
   return (

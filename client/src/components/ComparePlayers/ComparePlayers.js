@@ -7,8 +7,6 @@ import { infoBoxes } from './carInfo';
 import './ComparePlayer.css';
 import ComparePlayersStatsList from './ComparePlayersStatsList';
 
-const tableReducedLines = 15;
-
 const ComparePlayers = ({ player1_id, player2_id }) => {
   const [playerAttributesInfo, setPlayerAttributesInfo] = useState({});
   const [showFull, setShowFull] = useState(false);
@@ -59,13 +57,21 @@ const ComparePlayers = ({ player1_id, player2_id }) => {
             player1_data={playersData[i]}
             player2_data={playersData[i ^ 1]}
             descriptions={playerAttributesInfo.statsDescriptions}
+            showFull={showFull}
           />
         </div>
       );
     }
   }
 
-  return <div className='compareBox'>{playersBox}</div>;
+  return (
+    <div className='compare'>
+      <div className='compareBox'>{playersBox}</div>
+      <button onClick={() => setShowFull(!showFull)}>
+        {!showFull ? 'Show more' : 'Show less'}
+      </button>
+    </div>
+  );
 };
 
 export default ComparePlayers;

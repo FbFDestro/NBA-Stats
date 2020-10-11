@@ -1,12 +1,19 @@
 import React from 'react';
 import InfoBox from '../InfoBox/InfoBox';
 
-const ComparePlayersStatsList = ({ player1_data, player2_data, descriptions }) => {
+const showNumber = 15;
+
+const ComparePlayersStatsList = ({
+  player1_data,
+  player2_data,
+  descriptions,
+  showFull,
+}) => {
   const statsList = Object.keys(descriptions).map((description) => {
     if (['name', 'position', 'team'].includes(description)) return null;
 
     let color =
-      parseFloat(player1_data[description]) > parseFloat(player2_data[description])
+      parseFloat(player1_data[description]) >= parseFloat(player2_data[description])
         ? 'green'
         : 'red';
 
@@ -27,7 +34,7 @@ const ComparePlayersStatsList = ({ player1_data, player2_data, descriptions }) =
     );
   });
 
-  return <div>{statsList}</div>;
+  return <>{!showFull ? statsList.slice(0, showNumber) : statsList}</>;
 };
 
 export default ComparePlayersStatsList;
