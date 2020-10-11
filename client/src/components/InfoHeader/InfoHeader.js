@@ -34,7 +34,7 @@ const InfoHeader = ({ data }) => {
           data={pageInfo[box.dataKey]}
           image={box.imageKey ? pageInfo[box.imageKey] : null}
           link={box.linkKey ? box.linkPrefix + pageInfo[box.linkKey] : null}
-          bigger='big'
+          size='bigger'
         />
       );
     });

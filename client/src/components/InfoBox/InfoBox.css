@@ -13,9 +13,13 @@
   border-radius: 0 !important;
 }
 
-.tooltip.big {
+.tooltip.bigger {
   width: 200px;
   gap: 10px;
+}
+
+.tooltip.full {
+  width: 100%;
 }
 
 .infoBoxSmallDescription {

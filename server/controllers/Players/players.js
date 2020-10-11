@@ -15,6 +15,10 @@ const orderByKeys = [
   { description: 'Three points made', value: 'three_points' },
 ];
 
+function convertDateFormat(date) {
+  return date.slice(0, date.indexOf('T'));
+}
+
 /**
  * Get a list of players
  * @query search (ilike name), order_by (orderByKeys), order (asc, desc), id (specific team id)
@@ -114,14 +118,10 @@ const getPlayerInfo = async (request, response) => {
 
   const queryResponse = await query(attributes, target, whereString);
 
-  if (
-    queryResponse.data &&
-    queryResponse.data.length > 0 &&
-    queryResponse.data[0].birth_date
-  ) {
-    let birth = queryResponse.data[0].birth_date;
-    birth = birth.slice(0, birth.indexOf('T'));
-    queryResponse.data[0].birth_date = birth;
+  if (queryResponse.data && queryResponse.data.length > 0) {
+    queryResponse.data[0].birth_date = convertDateFormat(
+      queryResponse.data[0].birth_date
+    );
   }
 
   if (queryResponse.data[0].salary) {
@@ -167,8 +167,7 @@ const comparePlayers = async (request, response) => {
 
   //  generate attributes using personal info of a player + player stats values
   const attributes = queryAttributes.playerPersonalInfo.concat(
-    Object.keys(queryAttributes.statsDescriptions)
-    .map((key) => `ps.${key}`)
+    Object.keys(queryAttributes.statsDescriptions).map((key) => `ps.${key}`)
   );
 
   const target =
@@ -177,6 +176,14 @@ const comparePlayers = async (request, response) => {
   const whereString = `p.player_id = ${player1_id} or p.player_id = ${player2_id}`;
 
   const queryResponse = await query(attributes, target, whereString);
+
+  if (queryResponse.data) {
+    for (let i = 0; i < queryResponse.data.length; i++) {
+      queryResponse.data[i].birth_date = convertDateFormat(
+        queryResponse.data[i].birth_date
+      );
+    }
+  }
 
   return response.status(200).json(queryResponse);
 };

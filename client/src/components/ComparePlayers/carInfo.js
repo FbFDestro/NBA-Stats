@@ -28,8 +28,9 @@ const infoBoxes = [
     description: "Player's weight in pounds (lbs)",
   },
   {
-    dataKey: 'birth_city',
-    description: 'City in with the player was born',
+    dataKey: 'started',
+    smallDescription: 'Stared',
+    description: 'Number of games started',
   },
 ];
 

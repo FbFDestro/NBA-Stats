@@ -5,6 +5,7 @@ import ItemCard from '../ItemCard/ItemCard';
 import { infoBoxes } from './carInfo';
 
 import './ComparePlayer.css';
+import ComparePlayersStatsList from './ComparePlayersStatsList';
 
 const tableReducedLines = 15;
 
@@ -40,12 +41,11 @@ const ComparePlayers = ({ player1_id, player2_id }) => {
     return () => (isMounted = false);
   }, [player1_id, player2_id]);
 
-  console.log(playersData);
-
-  const playersBox =
-    playersData &&
-    playersData.map((item) => {
-      return (
+  const playersBox = [];
+  if (playersData) {
+    for (let i = 0; i < playersData.length; i++) {
+      const item = playersData[i];
+      playersBox.push(
         <div key={item['player_id']} className='playerBoxCompare'>
           <ItemCard
             key={item['player_id']}
@@ -55,9 +55,15 @@ const ComparePlayers = ({ player1_id, player2_id }) => {
             infoboxItems={infoBoxes}
             data={item}
           />
+          <ComparePlayersStatsList
+            player1_data={playersData[i]}
+            player2_data={playersData[i ^ 1]}
+            descriptions={playerAttributesInfo.statsDescriptions}
+          />
         </div>
       );
-    });
+    }
+  }
 
   return <div className='compareBox'>{playersBox}</div>;
 };

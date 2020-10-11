@@ -4,9 +4,8 @@ import InfoBox from '../InfoBox/InfoBox';
 
 import './ItemCard.css';
 
-const ItemCard = ({ link, logo, name, infoboxItems, data, compact }) => {
+const ItemCard = ({ link, logo, name, infoboxItems, data, compact, size }) => {
   const infoBoxes = infoboxItems.map((infobox) => {
-    console.log(infobox.smallDescription);
     return (
       <InfoBox
         key={infobox.dataKey}
