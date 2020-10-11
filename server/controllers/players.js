@@ -144,9 +144,83 @@ const getPlayerInfo = async (request, response) => {
   return response.status(200).json(queryResponse);
 };
 
+const statsDescriptions = {
+  name: "Player's name",
+  team: 'The abbreviation of the Team',
+  position:
+    "Player's position in the starting lineup (if started), otherwise the position he substituted for",
+  started: 'Number of games started',
+  games: 'The number of games played',
+  fantasy_points: 'Total fantasy points',
+  minutes: 'Total number of minutes played',
+  field_goals_made: 'Total number of field goals made',
+  field_goals_attempted: 'Total number of field goals attempted',
+  field_goals_percentage: 'Total field goal percentage',
+  effective_field_goals_percentage: 'Total effective field goals percentage',
+  two_pointers_made: 'Total two pointers made',
+  two_pointers_attempted: 'Total two pointers attempted',
+  two_pointers_percentage: 'Total two pointers percentage',
+  three_pointers_made: 'Total three pointers made',
+  three_pointers_attempted: 'Total three pointers attempted',
+  three_pointers_percentage: 'Total three pointers percentage',
+  free_throws_made: 'Total free throws made',
+  free_throws_attempted: 'Total free throws attempted',
+  free_throws_percentage: 'Total free throws percentage',
+  offensive_rebounds: 'Total offensive rebounds',
+  defensive_rebounds: 'Total defensive rebounds',
+  rebounds: 'Total rebounds',
+  offensive_rebounds_percentage: 'Total offensive rebounds percentage',
+  defensive_rebounds_percentage: 'Total defensive rebounds percentage',
+  total_rebounds_percentage: 'The player/team total rebounds percentage',
+  assists: 'Total assists',
+  steals: 'Total steals',
+  blocked_shots: 'Total blocked shots',
+  turnovers: 'Total turnovers',
+  personal_fouls: 'Total personal fouls',
+  points: 'Total points scored',
+  true_shooting_attempts: "The player's true shooting attempts",
+  true_shooting_percentage: "The player's true shooting percentage",
+  player_efficiency_rating: "The player's linear weight efficiency rating",
+  assists_percentage: "The player's assist percentage",
+  steals_percentage: "The player's steal percentage",
+  blocks_percentage: "The player's block percentage",
+  turn_overs_percentage: "The player's turnover percentage",
+  usage_rate_percentage: "The player's usage rate percentage",
+  fantasy_points_fan_duel: 'Total FanDuel daily fantasy points scored',
+  fantasy_points_draft_kings: 'Total DraftKings daily fantasy points scored',
+  fantasy_points_yahoo: 'Total Yahoo daily fantasy points scored',
+  plus_minus: 'Total plus minus',
+  double_doubles: 'Total double-doubles scored',
+  triple_doubles: 'Total triple-doubles scored',
+  fantasy_points_fantasy_draft: 'Total FantasyDraft daily fantasy points scored',
+};
+
+const getPlayerStats = async (request, response) => {
+  const { player_id } = request.params;
+
+  const attributes = Object.keys(statsDescriptions);
+
+  const target = `player_stats ps`;
+  const whereString = 'ps.player_id = ' + player_id;
+  const queryResponse = await query(attributes, target, whereString);
+
+  if (queryResponse.data.length > 0) queryResponse.data = queryResponse.data[0];
+
+  return response.status(200).json(queryResponse);
+};
+
+const getPlayerAttributesInfo = async (request, response) => {
+  return response.status(200).json({
+    errors: null,
+    data: { statsDescriptions },
+  });
+};
+
 module.exports = {
   getPlayers,
   getPossibleOrderByKeys,
   getStatsPerTeam,
   getPlayerInfo,
+  getPlayerStats,
+  getPlayerAttributesInfo,
 };
