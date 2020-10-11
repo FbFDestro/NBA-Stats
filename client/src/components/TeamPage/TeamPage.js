@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import StatsTable from './StatsTable';
+import TeamStatsTable from './TeamStatsTable';
 
 import InfoHeader from '../InfoHeader/InfoHeader';
 
@@ -39,7 +39,7 @@ const TeamPage = () => {
       {/* <TeamInfo team_id={team_id} /> */}
       <InfoHeader data={infoHeaderData} />
       <div id='teamStatsBox'>
-        <StatsTable team_id={team_id} />
+        <TeamStatsTable team_id={team_id} />
         <div className='chartsBox'>
           <PlayerCharts team_id={team_id} />
         </div>

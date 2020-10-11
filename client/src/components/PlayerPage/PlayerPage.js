@@ -1,6 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import InfoHeader from '../InfoHeader/InfoHeader';
+import PlayerStatsTable from './PlayerStatsTable';
+
+import './PlayerPage.css';
 
 const PlayerPage = () => {
   const { player_id } = useParams();
@@ -56,7 +59,12 @@ const PlayerPage = () => {
     ],
   };
 
-  return <InfoHeader data={infoHeaderData} />;
+  return (
+    <>
+      <InfoHeader data={infoHeaderData} />
+      <PlayerStatsTable player_id={player_id} />
+    </>
+  );
 };
 
 export default PlayerPage;

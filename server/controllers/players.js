@@ -128,7 +128,11 @@ const getPlayerInfo = async (request, response) => {
 
   const queryResponse = await query(attributes, target, whereString);
 
-  if (queryResponse.data[0].birth_date) {
+  if (
+    queryResponse.data &&
+    queryResponse.data.length > 0 &&
+    queryResponse.data[0].birth_date
+  ) {
     let birth = queryResponse.data[0].birth_date;
     birth = birth.slice(0, birth.indexOf('T'));
     queryResponse.data[0].birth_date = birth;
@@ -147,8 +151,7 @@ const getPlayerInfo = async (request, response) => {
 const statsDescriptions = {
   name: "Player's name",
   team: 'The abbreviation of the Team',
-  position:
-    "Player's position in the starting lineup (if started), otherwise the position he substituted for",
+  position: "Player's position in the starting lineup",
   started: 'Number of games started',
   games: 'The number of games played',
   fantasy_points: 'Total fantasy points',

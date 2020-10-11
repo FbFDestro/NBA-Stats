@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const tableReducedLines = 15;
 
-const StatsTable = ({ team_id }) => {
+const TeamStatsTable = ({ team_id }) => {
   const [teamAttributesInfo, setTeamAttributesInfo] = useState({});
   const [showFull, setShowFull] = useState(false);
   useEffect(() => {
@@ -75,7 +75,7 @@ const StatsTable = ({ team_id }) => {
         <table className='teamDetails'>
           <thead>
             <tr>
-              <th></th>
+              <th>Team stats</th>
               <th>{teamData['name']}</th>
               <th>Opponents</th>
             </tr>
@@ -97,4 +97,4 @@ const StatsTable = ({ team_id }) => {
   return tableResult;
 };
 
-export default StatsTable;
+export default TeamStatsTable;
