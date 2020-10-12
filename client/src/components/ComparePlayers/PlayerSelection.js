@@ -100,16 +100,20 @@ const PlayerSelection = ({ playersId, setPlayersId }) => {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div id='searchBox'>
-            <input
-              type='text'
-              className='searchInput'
-              placeholder='Search by name'
-              value={localSearchStr}
-              onChange={(e) => setLocalSearchStr(e.target.value)}
-            />
-            <input type='submit' value='Search' onClick={handleSearch} />
-          </div>
+          {playersId[1] === null ? (
+            <>
+              <div id='searchBox'>
+                <input
+                  type='text'
+                  className='searchInput'
+                  placeholder='Search by name'
+                  value={localSearchStr}
+                  onChange={(e) => setLocalSearchStr(e.target.value)}
+                />
+                <input type='submit' value='Search' onClick={handleSearch} />
+              </div>
+            </>
+          ) : null}
 
           {playersId[0] !== null ? (
             <div className='selectedPlayersBox'>{selectedPlayers}</div>

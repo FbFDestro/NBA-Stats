@@ -7,6 +7,7 @@ import { infoBoxes } from './carInfo';
 import './ComparePlayer.css';
 import ComparePlayersStatsList from './ComparePlayersStatsList';
 import InfoBox from '../InfoBox/InfoBox';
+import CompareChart from './CompareChart';
 
 const ComparasionResult = ({ playersId }) => {
   const player1_id = playersId[0];
@@ -42,8 +43,6 @@ const ComparasionResult = ({ playersId }) => {
 
     return () => (isMounted = false);
   }, [player1_id, player2_id]);
-
-  console.log(playersData);
 
   const playersPoints = [0, 0];
   const playersBox = [];
@@ -93,13 +92,11 @@ const ComparasionResult = ({ playersId }) => {
 
   return (
     <div className='compare'>
-      <div className='compareBox'>
-        {playersBox[0]}
-        <h1>Chart</h1> {playersBox[1]}
-      </div>
+      <div className='compareBox'>{playersBox}</div>
       <button onClick={() => setShowFull(!showFull)}>
         {!showFull ? 'Show more' : 'Show less'}
       </button>
+      {playersData ? <CompareChart playersData={playersData} /> : null}
     </div>
   );
 };
