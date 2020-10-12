@@ -16,7 +16,7 @@ const setDarkTheme = () => {
 const setLightTheme = () => {
   root.style.setProperty('--main-bg-color', '#000');
   root.style.setProperty('--second-bg-color', '#eee');
-  root.style.setProperty('--third-bg-color', '#e4455b');
+  root.style.setProperty('--third-bg-color', '#f4667a');
   root.style.setProperty('--forth-bg-color', '#fff');
   root.style.setProperty('--main-infobox-color', '#ddd');
   root.style.setProperty('--main-btn-color', '#2d92fa');

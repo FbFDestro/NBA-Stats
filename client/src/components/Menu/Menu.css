@@ -5,7 +5,10 @@ nav ul {
   overflow: hidden;
   align-items: center;
   display: flex;
+  grid-gap: 20px;
   gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 nav img {

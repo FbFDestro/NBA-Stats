@@ -118,7 +118,7 @@ const getTeamsBasic = async (request, response) => {
 
   let whereString = null;
   if (search) {
-    whereString = "t.name ilike '%" + search + "%' ";
+    whereString = "ts.name ilike '%" + search + "%' ";
   }
   const queryResponse = await query(attributes, target, whereString);
   return response.status(queryResponse.error == null ? 200 : 500).json(queryResponse);
