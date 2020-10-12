@@ -29,3 +29,5 @@ NBS Stats is a dashboard with metrics from teams and players from NBA 2019 [Bird
    To stop it from running use
 
    > docker-compose down
+
+5. The website should be available on http://localhost:3000

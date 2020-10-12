@@ -48,6 +48,10 @@ const App = () => {
           <Route path='/compareTeams'>
             <CompareTeams />
           </Route>
+
+          <Route path='*'>
+            <h1>Page not found :(</h1>
+          </Route>
         </Switch>
       </div>
     </Router>
