@@ -18,9 +18,6 @@ router.use(
 
 /**
  * Get a list of teams
- * @queryParams {string}: search (optional)
- * @queryParams {string}: order_by (optional)
- * @queryParams {string}: order (optional)
  */
 router.get('/', getTeams);
 
@@ -29,8 +26,19 @@ router.get('/', getTeams);
  */
 router.get('/possibleOrderByKeys', getPossibleOrderByKeys);
 
+/**
+ * Get info from a team
+ */
 router.get('/info/:team_id', getTeamInfo);
+
+/**
+ * Get stats from a team
+ */
 router.get('/stats/:team_id', getTeamStats);
+
+/**
+ * Get stats attributes descriptions
+ */
 router.get('/attributesInfo', getTeamAttributesInfo);
 
 module.exports = router;

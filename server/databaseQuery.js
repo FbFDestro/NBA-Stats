@@ -2,7 +2,7 @@ const axios = require('axios');
 const databaseUrl = process.env.BD_API;
 
 /**
- * @returns {String} select statment using attibutes, table and extraConditions
+ * @returns {String} select statment using attibutes, target, conditions and extraConditions
  * @param {Array} attributes
  * @param {string} target
  * @param {(string|null)} where
