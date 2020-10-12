@@ -3,6 +3,9 @@ const query = require('../../databaseQuery');
 
 const queryAttributes = require('./queryAttributes');
 
+/**
+ * List of descriptions and keys to possible order by keys for players
+ */
 const orderByKeys = [
   { description: 'Name', value: 'name' },
   { description: 'Position', value: 'position' },
@@ -32,6 +35,7 @@ const getPlayers = async (request, response) => {
 
   let whereString = '',
     extraConditionsString = null;
+
   if (search) {
     whereString = "p.yahoo_name ilike '%" + search + "%' ";
   }
@@ -43,7 +47,7 @@ const getPlayers = async (request, response) => {
 
   if (order_by && orderByKeys.find(({ value }) => value === order_by)) {
     extraConditionsString = 'order by ' + order_by + ' ';
-    if ((order && order == 'asc') || order == 'desc') {
+    if (order && (order == 'asc' || order == 'desc')) {
       extraConditionsString += order + ' ';
     }
   }
@@ -58,6 +62,9 @@ const getPlayers = async (request, response) => {
   return response.status(queryResponse.error == null ? 200 : 500).json(queryResponse);
 };
 
+/**
+ * @returns list of possible order by keys of team
+ */
 const getPossibleOrderByKeys = async (request, response) => {
   return response.status(200).json({
     errors: null,
@@ -66,7 +73,7 @@ const getPossibleOrderByKeys = async (request, response) => {
 };
 
 /**
- * Get points and efficiency of players of a team
+ * @returns Points and efficiency of players of a team
  * @params team_id
  */
 const getStatsPerTeam = async (request, response) => {
@@ -93,6 +100,7 @@ const getStatsPerTeam = async (request, response) => {
       .sort((p1, p2) => p2.value - p1.value);
   };
 
+  // sorted stats are used to form a chart
   const sortedPoints = getSortedArray(queryResponse.data, 'points');
   const sortedEfficiency = getSortedArray(queryResponse.data, 'efficiency');
 
@@ -106,7 +114,7 @@ const getStatsPerTeam = async (request, response) => {
 };
 
 /**
- *  Get personal info from a player
+ *  @returns Personal info from a player
  *  @params player_id
  */
 const getPlayerInfo = async (request, response) => {
@@ -135,7 +143,7 @@ const getPlayerInfo = async (request, response) => {
 };
 
 /**
- * Get a list of players basic verison (only id, name and picture)
+ * @return list of players basic verison (id, name and photo_url)
  * @query search (ilike name)
  */
 const getPlayersBasic = async (request, response) => {
@@ -153,7 +161,7 @@ const getPlayersBasic = async (request, response) => {
 };
 
 /**
- * Get stats of a players
+ * @returns stats of a player
  * @params player_id
  */
 const getPlayerStats = async (request, response) => {
@@ -171,7 +179,7 @@ const getPlayerStats = async (request, response) => {
 };
 
 /**
- *  Get keys and descriptions for stats of a player
+ *  @returns keys and descriptions for stats of a player
  */
 const getPlayerAttributesInfo = async (request, response) => {
   return response.status(200).json({
@@ -180,6 +188,10 @@ const getPlayerAttributesInfo = async (request, response) => {
   });
 };
 
+/**
+ * @return Data from two players for comparasion
+ * @params player1_id, player2_id
+ */
 const comparePlayers = async (request, response) => {
   const { player1_id, player2_id } = request.params;
 

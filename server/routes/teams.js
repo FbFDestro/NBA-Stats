@@ -7,7 +7,7 @@ const {
   getTeamInfo,
   getTeamStats,
   getTeamAttributesInfo,
-} = require('../controllers/teams');
+} = require('../controllers/Teams/teams');
 
 router.use(express.json()); // for parsing application/json
 router.use(
