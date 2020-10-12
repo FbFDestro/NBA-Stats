@@ -1,5 +1,3 @@
-require('dotenv').config(); // export env variables
-
 const teams = require('./routes/teams');
 const players = require('./routes/players');
 
