@@ -31,7 +31,7 @@ const ComparasionResult = ({
     fetchAttributesInfo();
 
     return () => (isMounted = false);
-  }, []);
+  }, [page]);
 
   const [itemsData, setItemsData] = useState(null);
   useEffect(() => {
@@ -45,7 +45,7 @@ const ComparasionResult = ({
     fetchItemsData();
 
     return () => (isMounted = false);
-  }, [item1_id, item2_id]);
+  }, [page, item1_id, item2_id]);
 
   const itemsPoints = [0, 0];
   const itemsBox = [];
@@ -68,16 +68,14 @@ const ComparasionResult = ({
       itemsBox.push(
         <div key={item[item_idKey]} className='itemBoxCompare'>
           <ItemCard
-            key={item[item_idKey]}
             link={`/${page.slice(0, -1)}/${item[item_idKey]}`}
-            logo={item['photo_url']}
+            logo={item['photo_url'] ? item['photo_url'] : item['logo_url']}
             name={item['name']}
             infoboxItems={infoBoxes}
             data={item}
           />
 
           <InfoBox
-            key='rank'
             description='Point obtained from each better stats'
             data={'Comparison points ' + itemsPoints[i]}
             color={itemsPoints[i] >= itemsPoints[i ^ 1] ? 'back-green' : 'back-red'}
@@ -85,6 +83,7 @@ const ComparasionResult = ({
           />
 
           <ItemsStatsList
+            key={'statsList' + i}
             items_data={itemsData}
             item_id={i}
             descriptions={itemAttributesInfo.statsDescriptions}

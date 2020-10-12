@@ -102,8 +102,46 @@ const getTeamStats = async (request, response) => {
 const getTeamAttributesInfo = async (request, response) => {
   return response.status(200).json({
     errors: null,
-    data: { descriptions: statsDescriptions, smallIsBetter },
+    data: { statsDescriptions: statsDescriptions, smallIsBetter },
   });
+};
+
+/**
+ * @return list of teams basic verison (id, name and photo_url)
+ * @query search (ilike name)
+ */
+const getTeamsBasic = async (request, response) => {
+  const { search } = request.query;
+
+  const attributes = ['t.team_id', 'ts.name', 't.wikipedia_logo_url as photo_url'];
+  const target = `teams t inner join team_stats ts on t.team_id = ts.team_id`;
+
+  let whereString = null;
+  if (search) {
+    whereString = "t.name ilike '%" + search + "%' ";
+  }
+  const queryResponse = await query(attributes, target, whereString);
+  return response.status(queryResponse.error == null ? 200 : 500).json(queryResponse);
+};
+
+/**
+ * @return Data from two teams for comparasion
+ * @params team1_id, team2_id
+ */
+const compareTeams = async (request, response) => {
+  const { team1_id, team2_id } = request.params;
+
+  //  generate attributes using personal info of a team + team stats values
+  const attributes = teamInfo.concat(
+    Object.keys(statsDescriptions).map((key) => `ts.${key}`)
+  );
+
+  const target = 'teams t inner join team_stats ts on t.team_id = ts.team_id';
+  const whereString = `t.team_id = ${team1_id} or t.team_id = ${team2_id}`;
+
+  const queryResponse = await query(attributes, target, whereString);
+
+  return response.status(200).json(queryResponse);
 };
 
 module.exports = {
@@ -112,4 +150,6 @@ module.exports = {
   getTeamInfo,
   getTeamStats,
   getTeamAttributesInfo,
+  getTeamsBasic,
+  compareTeams,
 };

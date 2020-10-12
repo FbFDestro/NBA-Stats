@@ -26,7 +26,7 @@ const ItemsSelection = ({ itemsId, setItemsId, page, item_idKey }) => {
     fetchItems();
 
     return () => (isMounted = false);
-  }, [search]);
+  }, [page, search]);
 
   const indexOfLastTeam = currentPage * itemsPerPage;
   const indexOfFirstTeam = indexOfLastTeam - itemsPerPage;

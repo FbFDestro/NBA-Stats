@@ -7,6 +7,8 @@ const {
   getTeamInfo,
   getTeamStats,
   getTeamAttributesInfo,
+  getTeamsBasic,
+  compareTeams,
 } = require('../controllers/Teams/teams');
 
 router.use(express.json()); // for parsing application/json
@@ -20,6 +22,11 @@ router.use(
  * Get a list of teams
  */
 router.get('/', getTeams);
+
+/**
+ * Get a list of teams with only basic information (id, name, photo_url)
+ */
+router.get('/basicInfoList', getTeamsBasic);
 
 /**
  * Get a list of possible order by keys for teams
@@ -40,5 +47,10 @@ router.get('/stats/:team_id', getTeamStats);
  * Get stats attributes descriptions
  */
 router.get('/attributesInfo', getTeamAttributesInfo);
+
+/**
+ * Get personal info + stats from two teams
+ */
+router.get('/compare/:team1_id/:team2_id', compareTeams);
 
 module.exports = router;

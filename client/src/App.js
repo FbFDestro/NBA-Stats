@@ -11,6 +11,7 @@ import TeamPage from './components/TeamPage/TeamPage';
 import PlayerPage from './components/PlayerPage/PlayerPage';
 import ComparePlayers from './components/ComparePlayers/ComparePlayers';
 import { setDarkTheme, setLightTheme } from './manageThemes';
+import CompareTeams from './components/CompareTeams/CompareTeams';
 
 const App = () => {
   const [theme, setTheme] = useLocalStorage('theme', 0);
@@ -43,6 +44,9 @@ const App = () => {
 
           <Route path='/comparePlayers'>
             <ComparePlayers />
+          </Route>
+          <Route path='/compareTeams'>
+            <CompareTeams />
           </Route>
         </Switch>
       </div>

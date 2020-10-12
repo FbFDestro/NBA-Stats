@@ -21,6 +21,7 @@ const Compare = ({ page, skipList, inverted, item_idKey, infoBoxes }) => {
           infoBoxes={infoBoxes}
           skipList={skipList}
           inverted={inverted}
+          item_idKey={item_idKey}
         />
       ) : null}
     </div>

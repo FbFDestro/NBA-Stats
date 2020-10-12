@@ -59,7 +59,7 @@ const TeamStatsTable = ({ team_id }) => {
 
       teamStatsRows.push(
         <tr key={data}>
-          <td className='description'>{teamAttributesInfo.descriptions[data]}</td>
+          <td className='description'>{teamAttributesInfo.statsDescriptions[data]}</td>
           <td className={`value ${isSingleData ? 'noRightBorder' : teamColor}`}>
             {teamData[data]}
           </td>

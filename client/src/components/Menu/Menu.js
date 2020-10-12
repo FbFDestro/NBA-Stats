@@ -29,6 +29,11 @@ export const Menu = (props) => {
           </Link>
         </li>
         <li>
+          <Link to='/compareTeams' className={isActive('/compareTeams')}>
+            Compare Teams
+          </Link>
+        </li>
+        <li>
           <Link to='/players' className={isActive('/players')}>
             Players
           </Link>
