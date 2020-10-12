@@ -67,29 +67,25 @@ const ListPage = ({
     return () => (isMounted = false);
   }, [page]);
 
-  const renderItems = () => {
-    if (loading) {
-      return <h1>Loading...</h1>;
-    } else {
-      return (
-        <>
-          {currentItems.map((item) => {
-            return (
-              <ItemCard
-                key={item[item_id]}
-                link={`/${individualLink}/${item[item_id]}`}
-                logo={item[cardInfo.logo_key]}
-                name={item['name']}
-                infoboxItems={cardInfo.infobox}
-                data={item}
-                compact={compact ? true : false}
-              />
-            );
-          })}
-        </>
-      );
-    }
-  };
+  const itemsBox = loading ? (
+    <h1>Loading...</h1>
+  ) : (
+    <>
+      {currentItems.map((item) => {
+        return (
+          <ItemCard
+            key={item[item_id]}
+            link={`/${individualLink}/${item[item_id]}`}
+            logo={item[cardInfo.logo_key]}
+            name={item['name']}
+            infoboxItems={cardInfo.infobox}
+            data={item}
+            compact={compact ? true : false}
+          />
+        );
+      })}
+    </>
+  );
 
   const title = listTitle ? <h1 className='listTitle'>{listTitle}</h1> : null;
 
@@ -105,7 +101,7 @@ const ListPage = ({
         order={order}
         setOrder={setOrder}
       />
-      <div id='itemsBox'>{renderItems()}</div>
+      <div id='itemsBox'>{itemsBox}</div>
       <Pagination
         itensPerPage={itemsPerPage}
         totalItens={items.length}

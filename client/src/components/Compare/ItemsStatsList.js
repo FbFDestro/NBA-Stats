@@ -3,18 +3,25 @@ import InfoBox from '../InfoBox/InfoBox';
 
 const showNumber = 15;
 
-const ComparePlayersStatsList = ({ players_data, player_id, descriptions, showFull }) => {
+const ItemsStatsList = ({
+  items_data,
+  item_id,
+  descriptions,
+  showFull,
+  skipList,
+  inverted,
+}) => {
   const statsList = Object.keys(descriptions).map((description) => {
-    if (['name', 'position', 'team'].includes(description)) return null;
+    if (skipList.includes(description)) return null;
 
     let color =
-      parseFloat(players_data[player_id][description]) >=
-      parseFloat(players_data[player_id ^ 1][description])
+      parseFloat(items_data[item_id][description]) >=
+      parseFloat(items_data[item_id ^ 1][description])
         ? 'green'
         : 'red';
 
     //invert color
-    if (description === 'personal_fouls') {
+    if (inverted.includes(description)) {
       color = color === 'green' ? 'red' : 'green';
     }
 
@@ -23,7 +30,7 @@ const ComparePlayersStatsList = ({ players_data, player_id, descriptions, showFu
         key={description}
         smallDescription={descriptions[description]}
         description={descriptions[description]}
-        data={players_data[player_id][description]}
+        data={items_data[item_id][description]}
         color={color}
         size='full'
       />
@@ -33,4 +40,4 @@ const ComparePlayersStatsList = ({ players_data, player_id, descriptions, showFu
   return <>{!showFull ? statsList.slice(0, showNumber) : statsList}</>;
 };
 
-export default ComparePlayersStatsList;
+export default ItemsStatsList;

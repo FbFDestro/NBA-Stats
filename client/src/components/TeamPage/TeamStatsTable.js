@@ -5,7 +5,6 @@ const tableReducedLines = 15;
 
 const TeamStatsTable = ({ team_id }) => {
   const [teamAttributesInfo, setTeamAttributesInfo] = useState({});
-  const [showFull, setShowFull] = useState(false);
   useEffect(() => {
     let isMounted = true;
     const fetchAttributesInfo = async () => {
@@ -33,9 +32,10 @@ const TeamStatsTable = ({ team_id }) => {
     return () => (isMounted = false);
   }, [team_id]);
 
-  let tableResult = null;
+  const [showFull, setShowFull] = useState(false);
 
-  const teamList = [];
+  let tableResult = null;
+  const teamStatsRows = [];
   if (teamData) {
     let countLines = 0;
     for (const data in teamData) {
@@ -46,6 +46,7 @@ const TeamStatsTable = ({ team_id }) => {
       const teamValue = teamData[data];
       const opponentValue = teamData['opponent_stat_' + data];
 
+      // set color
       let teamColor = teamValue >= opponentValue;
       if (teamAttributesInfo.smallIsBetter.includes(data)) {
         teamColor ^= 1;
@@ -53,9 +54,10 @@ const TeamStatsTable = ({ team_id }) => {
       let opponentColor = !teamColor ? 'red' : '';
       teamColor = teamColor ? 'green' : '';
 
+      // fields that uses both columns (team and opponent)
       const isSingleData = ['possessions', 'games'].includes(data);
 
-      teamList.push(
+      teamStatsRows.push(
         <tr key={data}>
           <td className='description'>{teamAttributesInfo.descriptions[data]}</td>
           <td className={`value ${isSingleData ? 'noRightBorder' : teamColor}`}>
@@ -80,7 +82,7 @@ const TeamStatsTable = ({ team_id }) => {
               <th>Opponents</th>
             </tr>
           </thead>
-          <tbody>{teamList}</tbody>
+          <tbody>{teamStatsRows}</tbody>
         </table>
         <button
           className='btnShowMore'

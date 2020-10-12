@@ -1,7 +1,7 @@
 import React from 'react';
 import { Radar } from 'react-chartjs-2';
 
-const CompareChart = ({ playersData }) => {
+const PlayerCompareChart = ({ playersData }) => {
   const dataDescriptions = {
     // points: 'Points',
     player_efficiency_rating: 'Efficiency',
@@ -68,4 +68,4 @@ const CompareChart = ({ playersData }) => {
   );
 };
 
-export default CompareChart;
+export default PlayerCompareChart;

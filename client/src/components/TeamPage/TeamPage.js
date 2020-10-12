@@ -36,7 +36,6 @@ const TeamPage = () => {
 
   return (
     <>
-      {/* <TeamInfo team_id={team_id} /> */}
       <InfoHeader data={infoHeaderData} />
       <div id='teamStatsBox'>
         <TeamStatsTable team_id={team_id} />

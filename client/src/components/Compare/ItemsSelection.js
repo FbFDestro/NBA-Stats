@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pagination from '../Pagination/Pagination';
 
-const PlayerSelection = ({ playersId, setPlayersId }) => {
+const ItemsSelection = ({ itemsId, setItemsId, page, item_idKey }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +17,7 @@ const PlayerSelection = ({ playersId, setPlayersId }) => {
       setLoading(true);
       let filterString = '';
       filterString = `?search=${search}`;
-      const response = await axios.get('/api/players/basicInfoList' + filterString);
+      const response = await axios.get(`/api/${page}/basicInfoList${filterString}`);
       if (isMounted) {
         setItems(response.data.data);
         setLoading(false);
@@ -40,56 +40,56 @@ const PlayerSelection = ({ playersId, setPlayersId }) => {
     setSearch(localSearchStr);
   };
 
-  const [selectedPlayersData, setSelectedPlayersData] = useState([null, null]);
+  const [selectedItemsData, setSelectedItemsData] = useState([null, null]);
 
   const handleSelection = (item) => {
-    if (playersId.length === 2) {
-      if (playersId[0] === null) {
-        setPlayersId([item.player_id, null]);
-        setSelectedPlayersData([item, null]);
-      } else if (playersId[1] === null && item.player_id !== playersId[0]) {
-        setPlayersId([playersId[0], item.player_id]);
-        setSelectedPlayersData([selectedPlayersData[0], item]);
+    if (itemsId.length === 2) {
+      if (itemsId[0] === null) {
+        setItemsId([item[item_idKey], null]);
+        setSelectedItemsData([item, null]);
+      } else if (itemsId[1] === null && item[item_idKey] !== itemsId[0]) {
+        setItemsId([itemsId[0], item[item_idKey]]);
+        setSelectedItemsData([selectedItemsData[0], item]);
       }
     }
   };
 
   const handleUnselection = (id) => {
-    if (playersId[0] === id) {
-      setPlayersId([playersId[1], null]);
-      setSelectedPlayersData([selectedPlayersData[1], null]);
-    } else if (playersId[1] === id) {
-      setPlayersId([playersId[0], null]);
-      setSelectedPlayersData([selectedPlayersData[0], null]);
+    if (itemsId[0] === id) {
+      setItemsId([itemsId[1], null]);
+      setSelectedItemsData([selectedItemsData[1], null]);
+    } else if (itemsId[1] === id) {
+      setItemsId([itemsId[0], null]);
+      setSelectedItemsData([selectedItemsData[0], null]);
     }
   };
 
-  const selectedPlayers = selectedPlayersData.map((item) => {
+  const selectedItems = selectedItemsData.map((item) => {
     if (item === null) return null;
     return (
       <div
-        className='selectPlayer'
-        key={item.player_id}
-        onClick={() => handleUnselection(item.player_id)}
+        className='selectItem'
+        key={item[item_idKey]}
+        onClick={() => handleUnselection(item[item_idKey])}
       >
         <img src={item.photo_url} alt={item.name} />
-        <span className='playerName'>{item.name}</span>
+        <span className='itemName'>{item.name}</span>
         <img className='deleteImg' src='/media/delete.png' alt={item.name} />
       </div>
     );
   });
 
-  const playersList = currentItems.map((item) => {
+  const itemsList = currentItems.map((item) => {
     return (
       <div
-        className='selectPlayer'
-        key={item.player_id}
+        className='selectItem'
+        key={item[item_idKey]}
         onClick={() => {
           handleSelection(item);
         }}
       >
         <img src={item.photo_url} alt={item.name} />{' '}
-        <span className='playerName'>{item.name}</span>
+        <span className='itemName'>{item.name}</span>
       </div>
     );
   });
@@ -100,7 +100,7 @@ const PlayerSelection = ({ playersId, setPlayersId }) => {
         <h1>Loading...</h1>
       ) : (
         <>
-          {playersId[1] === null ? (
+          {itemsId[1] === null ? (
             <>
               <div id='searchBox'>
                 <input
@@ -115,13 +115,13 @@ const PlayerSelection = ({ playersId, setPlayersId }) => {
             </>
           ) : null}
 
-          {playersId[0] !== null ? (
-            <div className='selectedPlayersBox'>{selectedPlayers}</div>
+          {itemsId[0] !== null ? (
+            <div className='selectedItemsBox'>{selectedItems}</div>
           ) : null}
 
-          {playersId[1] === null ? (
+          {itemsId[1] === null ? (
             <>
-              <div className='selectPlayerBox'>{playersList}</div>
+              <div className='selectItemBox'>{itemsList}</div>
               <Pagination
                 itensPerPage={itemsPerPage}
                 totalItens={items.length}
@@ -136,4 +136,4 @@ const PlayerSelection = ({ playersId, setPlayersId }) => {
   );
 };
 
-export default PlayerSelection;
+export default ItemsSelection;

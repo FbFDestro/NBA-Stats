@@ -15,7 +15,6 @@ export const Menu = (props) => {
   return (
     <nav>
       <ul>
-        {/* light theme disabled for now */}
         <img
           className={`${props.theme === 0 ? 'img-dark' : ''} `}
           src='/media/light.png'

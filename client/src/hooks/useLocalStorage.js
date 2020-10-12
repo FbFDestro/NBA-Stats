@@ -1,6 +1,5 @@
-import { useState } from 'react';
-
 // CODE FROM https://usehooks.com/useLocalStorage/
+import { useState } from 'react';
 
 function useLocalStorage(key, initialValue) {
   // State to store our value
