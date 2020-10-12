@@ -4,7 +4,6 @@ import InfoBox from '../InfoBox/InfoBox';
 const showNumber = 15;
 
 const ComparePlayersStatsList = ({ players_data, player_id, descriptions, showFull }) => {
-  let points = 0;
   const statsList = Object.keys(descriptions).map((description) => {
     if (['name', 'position', 'team'].includes(description)) return null;
 
@@ -16,7 +15,7 @@ const ComparePlayersStatsList = ({ players_data, player_id, descriptions, showFu
 
     //invert color
     if (description === 'personal_fouls') {
-      color = color == 'green' ? 'red' : 'green';
+      color = color === 'green' ? 'red' : 'green';
     }
 
     return (

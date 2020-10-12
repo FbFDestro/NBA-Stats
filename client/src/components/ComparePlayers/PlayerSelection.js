@@ -43,11 +43,11 @@ const PlayerSelection = ({ playersId, setPlayersId }) => {
   const [selectedPlayersData, setSelectedPlayersData] = useState([null, null]);
 
   const handleSelection = (item) => {
-    if (playersId.length == 2) {
+    if (playersId.length === 2) {
       if (playersId[0] === null) {
         setPlayersId([item.player_id, null]);
         setSelectedPlayersData([item, null]);
-      } else if (playersId[1] === null && item.player_id != playersId[0]) {
+      } else if (playersId[1] === null && item.player_id !== playersId[0]) {
         setPlayersId([playersId[0], item.player_id]);
         setSelectedPlayersData([selectedPlayersData[0], item]);
       }
@@ -55,10 +55,10 @@ const PlayerSelection = ({ playersId, setPlayersId }) => {
   };
 
   const handleUnselection = (id) => {
-    if (playersId[0] == id) {
+    if (playersId[0] === id) {
       setPlayersId([playersId[1], null]);
       setSelectedPlayersData([selectedPlayersData[1], null]);
-    } else if (playersId[1] == id) {
+    } else if (playersId[1] === id) {
       setPlayersId([playersId[0], null]);
       setSelectedPlayersData([selectedPlayersData[0], null]);
     }
@@ -96,32 +96,38 @@ const PlayerSelection = ({ playersId, setPlayersId }) => {
 
   return (
     <div>
-      <div id='searchBox'>
-        <input
-          type='text'
-          className='searchInput'
-          placeholder='Search by name'
-          value={localSearchStr}
-          onChange={(e) => setLocalSearchStr(e.target.value)}
-        />
-        <input type='submit' value='Search' onClick={handleSearch} />
-      </div>
-
-      {playersId[0] !== null ? (
-        <div className='selectedPlayersBox'>{selectedPlayers}</div>
-      ) : null}
-
-      {playersId[1] === null ? (
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
         <>
-          <div className='selectPlayerBox'>{playersList}</div>
-          <Pagination
-            itensPerPage={itemsPerPage}
-            totalItens={items.length}
-            currentPage={currentPage}
-            paginate={paginate}
-          />
+          <div id='searchBox'>
+            <input
+              type='text'
+              className='searchInput'
+              placeholder='Search by name'
+              value={localSearchStr}
+              onChange={(e) => setLocalSearchStr(e.target.value)}
+            />
+            <input type='submit' value='Search' onClick={handleSearch} />
+          </div>
+
+          {playersId[0] !== null ? (
+            <div className='selectedPlayersBox'>{selectedPlayers}</div>
+          ) : null}
+
+          {playersId[1] === null ? (
+            <>
+              <div className='selectPlayerBox'>{playersList}</div>
+              <Pagination
+                itensPerPage={itemsPerPage}
+                totalItens={items.length}
+                currentPage={currentPage}
+                paginate={paginate}
+              />
+            </>
+          ) : null}
         </>
-      ) : null}
+      )}
     </div>
   );
 };

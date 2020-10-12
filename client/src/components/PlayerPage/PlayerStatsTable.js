@@ -43,8 +43,6 @@ const PlayerStatsTable = ({ player_id }) => {
 
       if (data === 'name' || data === 'player_id') continue;
 
-      const playerValue = playerData[data];
-
       playerList.push(
         <tr key={data}>
           <td className='description'>{playerAttributesInfo.statsDescriptions[data]}</td>

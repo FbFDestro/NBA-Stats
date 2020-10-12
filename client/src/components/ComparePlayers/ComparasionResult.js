@@ -27,21 +27,23 @@ const ComparasionResult = ({ playersId }) => {
     return () => (isMounted = false);
   }, []);
 
-  const [playersData, setplayersData] = useState(null);
+  const [playersData, setPlayersData] = useState(null);
   useEffect(() => {
     let isMounted = true;
-    const fetchplayersData = async () => {
+    const fetchPlayersData = async () => {
       const response = await axios.get(
         `/api/players/compare/${player1_id}/${player2_id}`
       );
       if (isMounted) {
-        if (response.data.data) setplayersData(response.data.data);
+        if (response.data.data) setPlayersData(response.data.data);
       }
     };
-    fetchplayersData();
+    fetchPlayersData();
 
     return () => (isMounted = false);
   }, [player1_id, player2_id]);
+
+  console.log(playersData);
 
   const playersPoints = [0, 0];
   const playersBox = [];
@@ -91,7 +93,10 @@ const ComparasionResult = ({ playersId }) => {
 
   return (
     <div className='compare'>
-      <div className='compareBox'>{playersBox}</div>
+      <div className='compareBox'>
+        {playersBox[0]}
+        <h1>Chart</h1> {playersBox[1]}
+      </div>
       <button onClick={() => setShowFull(!showFull)}>
         {!showFull ? 'Show more' : 'Show less'}
       </button>

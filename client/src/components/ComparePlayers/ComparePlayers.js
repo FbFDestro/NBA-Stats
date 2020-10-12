@@ -13,7 +13,7 @@ const ComparePlayers = () => {
     <div>
       <h1>Compare two players</h1>
       <PlayerSelection playersId={playersId} setPlayersId={setPlayersId} />
-      {playersId.length == 2 && playersId[0] && playersId[1] ? (
+      {playersId.length === 2 && playersId[0] && playersId[1] ? (
         <ComparasionResult playersId={playersId} />
       ) : null}
     </div>
