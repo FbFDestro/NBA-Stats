@@ -63,10 +63,11 @@ const App = () => {
           <Route path='/player/:player_id'>
             <PlayerPage />
           </Route>
-        </Switch>
 
-        {/* For test */}
-        <ComparePlayers player1_id='20000572' player2_id='20000443' />
+          <Route path='/comparePlayers'>
+            <ComparePlayers />
+          </Route>
+        </Switch>
       </div>
     </Router>
   );

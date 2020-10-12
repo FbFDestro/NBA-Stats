@@ -22,6 +22,16 @@
   width: 100%;
 }
 
+.btn.tooltip.back-green.full {
+  background-color: var(--main-green);
+  color: var(--main-infobox-color);
+}
+
+.btn.tooltip.back-red.full {
+  background-color: var(--main-red);
+  color: var(--main-infobox-color);
+}
+
 .infoBoxSmallDescription {
   font-size: 12px;
   margin-right: 6px;

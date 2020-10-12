@@ -9,6 +9,7 @@ const {
   getPlayerStats,
   getPlayerAttributesInfo,
   comparePlayers,
+  getPlayersBasic,
 } = require('../controllers/Players/players');
 
 router.use(express.json()); // for parsing application/json
@@ -24,6 +25,8 @@ router.use(
  * @queryParams {string}: order_by (optional)
  */
 router.get('/', getPlayers);
+
+router.get('/basicInfoList', getPlayersBasic);
 
 /**
  * Get a list of possible order by keys for teams

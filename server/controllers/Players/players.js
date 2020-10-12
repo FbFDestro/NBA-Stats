@@ -135,6 +135,24 @@ const getPlayerInfo = async (request, response) => {
 };
 
 /**
+ * Get a list of players basic verison (only id, name and picture)
+ * @query search (ilike name)
+ */
+const getPlayersBasic = async (request, response) => {
+  const { search } = request.query;
+
+  const attributes = ['p.player_id', 'p.yahoo_name as name', 'p.photo_url'];
+  const target = `players p`;
+
+  let whereString = null;
+  if (search) {
+    whereString = "p.yahoo_name ilike '%" + search + "%' ";
+  }
+  const queryResponse = await query(attributes, target, whereString);
+  return response.status(queryResponse.error == null ? 200 : 500).json(queryResponse);
+};
+
+/**
  * Get stats of a players
  * @params player_id
  */
@@ -196,4 +214,5 @@ module.exports = {
   getPlayerStats,
   getPlayerAttributesInfo,
   comparePlayers,
+  getPlayersBasic,
 };

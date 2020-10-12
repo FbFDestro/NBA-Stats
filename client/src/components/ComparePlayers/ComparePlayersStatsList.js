@@ -3,17 +3,14 @@ import InfoBox from '../InfoBox/InfoBox';
 
 const showNumber = 15;
 
-const ComparePlayersStatsList = ({
-  player1_data,
-  player2_data,
-  descriptions,
-  showFull,
-}) => {
+const ComparePlayersStatsList = ({ players_data, player_id, descriptions, showFull }) => {
+  let points = 0;
   const statsList = Object.keys(descriptions).map((description) => {
     if (['name', 'position', 'team'].includes(description)) return null;
 
     let color =
-      parseFloat(player1_data[description]) >= parseFloat(player2_data[description])
+      parseFloat(players_data[player_id][description]) >=
+      parseFloat(players_data[player_id ^ 1][description])
         ? 'green'
         : 'red';
 
@@ -27,7 +24,7 @@ const ComparePlayersStatsList = ({
         key={description}
         smallDescription={descriptions[description]}
         description={descriptions[description]}
-        data={player1_data[description]}
+        data={players_data[player_id][description]}
         color={color}
         size='full'
       />

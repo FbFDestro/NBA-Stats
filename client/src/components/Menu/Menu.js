@@ -34,6 +34,11 @@ export const Menu = (props) => {
             Players
           </Link>
         </li>
+        <li>
+          <Link to='/comparePlayers' className={isActive('/comparePlayers')}>
+            Compare Players
+          </Link>
+        </li>
       </ul>
     </nav>
   );
