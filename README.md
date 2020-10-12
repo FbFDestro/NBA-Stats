@@ -20,6 +20,8 @@ NBS Stats is a dashboard with metrics from teams and players from NBA 2019 [Bird
    BD_API={URL OF DATABASE API THAT ALLOWS QUERIES}
    ```
 
+   NOTE: Remember to change the {URL} with your valid URL
+
 4. Run the following Docker command
 
    > docker-compose up -d --build
